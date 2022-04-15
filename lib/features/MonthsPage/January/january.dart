@@ -9,9 +9,13 @@ class January extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        'January',
-        style: GoogleFonts.poppins(),
+      child: Center(
+        child: Text(
+          'January',
+         style: GoogleFonts.mukta(
+            fontSize: 30,
+          ),
+        ),
       ),
       color: Colors.amberAccent,
     );

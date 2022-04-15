@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../MonthsPage/April/april.dart';
 import '../MonthsPage/August/august.dart';
@@ -13,7 +14,6 @@ import '../MonthsPage/November/november.dart';
 import '../MonthsPage/October/october.dart';
 import '../MonthsPage/September/september.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({
     Key? key,
@@ -23,8 +23,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('Try to be grateful everyday'),
+        title: Center(
+          child: Text(
+            'Try to be grateful everyday',
+            style: GoogleFonts.mukta(
+              fontSize: 30,
+            ),
+          ),
         ),
       ),
       body: Center(
@@ -36,7 +41,7 @@ class HomePage extends StatelessWidget {
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             shrinkWrap: true,
-            childAspectRatio: 1,
+            childAspectRatio: 1.5,
             children: const [
               January(),
               February(),
@@ -57,4 +62,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

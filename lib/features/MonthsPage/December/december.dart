@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class December extends StatelessWidget {
   const December({
@@ -7,7 +8,14 @@ class December extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Container(child: Center(
+      child: Text(
+          'December',
+          style: GoogleFonts.mukta(
+            fontSize: 30,
+          ),
+        ),
+    ),
       color: Colors.amberAccent,
     );
   }
