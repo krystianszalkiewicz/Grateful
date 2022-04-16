@@ -8,15 +8,17 @@ class December extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Center(
-      child: Text(
+    return Container(
+      child: Center(
+        child: Text(
           'December',
-          style: GoogleFonts.mukta(
+          style: GoogleFonts.pacifico(
+            color: Colors.white,
             fontSize: 30,
           ),
         ),
-    ),
-      color: Colors.amberAccent,
+      ),
+      color: const Color.fromARGB(255, 23, 213, 169),
     );
   }
 }

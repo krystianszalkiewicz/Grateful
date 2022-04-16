@@ -12,12 +12,13 @@ class October extends StatelessWidget {
       child: Center(
         child: Text(
           'October',
-          style: GoogleFonts.mukta(
+          style: GoogleFonts.pacifico(
+            color: Colors.white,
             fontSize: 30,
           ),
         ),
       ),
-      color: Colors.amberAccent,
+      color: const Color.fromARGB(255, 23, 213, 169),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../MonthsPage/April/april.dart';
 import '../MonthsPage/August/august.dart';
 import '../MonthsPage/December/december.dart';
@@ -26,8 +25,9 @@ class HomePage extends StatelessWidget {
         title: Center(
           child: Text(
             'Try to be grateful everyday',
-            style: GoogleFonts.mukta(
-              fontSize: 30,
+            style: GoogleFonts.pacifico(
+              color: Colors.lightBlue,
+              fontSize: 23,
             ),
           ),
         ),
