@@ -26,8 +26,8 @@ class HomePage extends StatelessWidget {
           child: Text(
             'Try to be grateful everyday',
             style: GoogleFonts.pacifico(
-              color: Colors.lightBlue,
-              fontSize: 23,
+              color: const Color.fromARGB(255, 23, 213, 169),
+              fontSize: 26,
             ),
           ),
         ),
@@ -35,14 +35,14 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: GridView.count(
+          child: GridView.count( 
             primary: false,
             crossAxisCount: 2,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             shrinkWrap: true,
             childAspectRatio: 1.5,
-            children: const [
+            children: const [ 
               January(),
               February(),
               March(),
