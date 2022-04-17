@@ -113,7 +113,7 @@ class NameWidget extends StatelessWidget {
           Radius.circular(20),
         ),
       ),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       child: Text(
         (name),
