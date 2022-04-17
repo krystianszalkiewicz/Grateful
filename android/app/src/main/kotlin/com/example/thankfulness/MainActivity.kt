@@ -1,4 +1,4 @@
-package com.example.thankfulness
+package com.jaroslawgawlik.gratefulnes
 
 import io.flutter.embedding.android.FlutterActivity
 

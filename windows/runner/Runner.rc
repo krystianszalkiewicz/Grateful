@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "thankfulness" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "thankfulness" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 com.jaroslawgawlik.com All rights reserved." "\0"
             VALUE "OriginalFilename", "thankfulness.exe" "\0"
             VALUE "ProductName", "thankfulness" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
