@@ -73,7 +73,18 @@ class JanuarygratefulPage extends StatelessWidget {
             return ListView(
               children: [
                 for (final document in documents) ...[
-                  NameWidget(document['name'])
+                  Dismissible(
+                    key: ValueKey(document.id),
+                    onDismissed: (_) {
+                      FirebaseFirestore.instance
+                          .collection('january')
+                          .doc(document.id)
+                          .delete();
+                    },
+                    child: NameWidget(
+                      document['name'],
+                    ),
+                  ),
                 ],
               ],
             );
