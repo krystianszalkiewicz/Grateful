@@ -13,7 +13,7 @@ class January extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => const JanuarygratefulPage(),
+            builder: (_) => JanuarygratefulPage(),
           ),
         );
       },
@@ -34,8 +34,8 @@ class January extends StatelessWidget {
 }
 
 class JanuarygratefulPage extends StatelessWidget {
-  const JanuarygratefulPage({Key? key}) : super(key: key);
-
+  JanuarygratefulPage({Key? key}) : super(key: key);
+  final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +50,10 @@ class JanuarygratefulPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          FirebaseFirestore.instance
-              .collection('january')
-              .add({'name': 'za wspaniałą rodzinę'});
+          FirebaseFirestore.instance.collection('january').add(
+            {'name': controller.text},
+          );
+          controller.clear();
         },
         child: const Icon(
           Icons.add,
@@ -67,7 +68,7 @@ class JanuarygratefulPage extends StatelessWidget {
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             final documents = snapshot.data!.docs;
             return ListView(
@@ -86,6 +87,9 @@ class JanuarygratefulPage extends StatelessWidget {
                     ),
                   ),
                 ],
+                TextField(
+                  controller: controller,
+                ),
               ],
             );
           }),
