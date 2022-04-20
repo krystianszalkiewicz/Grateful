@@ -1,6 +1,16 @@
 part of 'january_cubit.dart';
 
 @immutable
-abstract class JanuaryState {}
+class JanuaryState {
+  final List<QueryDocumentSnapshot<Map<String, dynamic>>> documents;
+  final bool isLoading;
+  final String errorMessage;
 
-class JanuaryInitial extends JanuaryState {}
+
+  const JanuaryState({
+    required this.documents,
+    required this.isLoading,
+    required this.errorMessage,
+
+  });
+}

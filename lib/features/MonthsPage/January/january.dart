@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:thankfulness/features/MonthsPage/January/cubit/january_cubit.dart';
 
 class January extends StatelessWidget {
   const January({
@@ -48,43 +49,54 @@ class JanuarygratefulPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          FirebaseFirestore.instance.collection('january').add(
-            {'name': controller.text},
-          );
-          controller.clear();
-        },
-        child: const Icon(
-          Icons.add,
-          color: Color.fromARGB(255, 47, 184, 129),
+      floatingActionButton: BlocProvider(
+        create: (context) => JanuaryCubit(),
+        child: BlocBuilder<JanuaryCubit, JanuaryState>(
+          builder: (context, state) {
+            return FloatingActionButton(
+              onPressed: () {
+                context.read<JanuaryCubit>().add(
+                      name: controller.text,
+                    );
+                controller.clear();
+              },
+              child: const Icon(
+                Icons.add,
+                color: Color.fromARGB(255, 47, 184, 129),
+              ),
+            );
+          },
         ),
       ),
-      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: FirebaseFirestore.instance.collection('january').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Something went wrong');
+      body: BlocProvider(
+        create: (context) => JanuaryCubit()..start(),
+        child: BlocBuilder<JanuaryCubit, JanuaryState>(
+          builder: (context, state) {
+            if (state.errorMessage.isNotEmpty) {
+              return Text('Something went wrong : ${state.errorMessage}');
             }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (state.isLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-            final documents = snapshot.data!.docs;
+            final documents = state.documents;
             return ListView(
               children: [
                 for (final document in documents) ...[
-                  Dismissible(
-                    key: ValueKey(document.id),
-                    onDismissed: (_) {
-                      FirebaseFirestore.instance
-                          .collection('january')
-                          .doc(document.id)
-                          .delete();
+                  BlocBuilder<JanuaryCubit, JanuaryState>(
+                    builder: (context, state) {
+                      return Dismissible(
+                        key: ValueKey(document.id),
+                        onDismissed: (_) {
+                          context
+                              .read<JanuaryCubit>()
+                              .delete(document: document, id: document.id);
+                        },
+                        child: NameWidget(
+                          document['name'],
+                        ),
+                      );
                     },
-                    child: NameWidget(
-                      document['name'],
-                    ),
                   ),
                 ],
                 TextField(
@@ -92,7 +104,9 @@ class JanuarygratefulPage extends StatelessWidget {
                 ),
               ],
             );
-          }),
+          },
+        ),
+      ),
     );
   }
 }
