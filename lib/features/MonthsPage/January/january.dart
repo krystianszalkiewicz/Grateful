@@ -36,7 +36,11 @@ class January extends StatelessWidget {
 
 class JanuarygratefulPage extends StatelessWidget {
   JanuarygratefulPage({Key? key}) : super(key: key);
+
+
   final controller = TextEditingController();
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,21 +83,21 @@ class JanuarygratefulPage extends StatelessWidget {
             if (state.isLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-            final documents = state.documents;
+            final itemModels = state.documents;
             return ListView(
               children: [
-                for (final document in documents) ...[
+                for (final itemModel in itemModels) ...[
                   BlocBuilder<JanuaryCubit, JanuaryState>(
                     builder: (context, state) {
                       return Dismissible(
-                        key: ValueKey(document.id),
+                        key: ValueKey(itemModel.id),
                         onDismissed: (_) {
                           context
                               .read<JanuaryCubit>()
-                              .delete(document: document, id: document.id);
+                              .delete(document: itemModel, id: itemModel.id);
                         },
                         child: NameWidget(
-                          document['name'],
+                          itemModel.id,
                         ),
                       );
                     },

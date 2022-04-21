@@ -3,6 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../models/item_model.dart';
+
 part 'january_state.dart';
 
 class JanuaryCubit extends Cubit<JanuaryState> {
@@ -41,9 +43,15 @@ class JanuaryCubit extends Cubit<JanuaryState> {
     _streamSubscription =
         FirebaseFirestore.instance.collection('january').snapshots().listen(
       (data) {
+        final itemModels = data.docs.map((doc) {
+          return ItemModel(
+            name: doc['name'],
+            id: doc.id,
+          );
+        }).toList();
         emit(
           JanuaryState(
-            documents: data.docs,
+            documents: itemModels,
             isLoading: false,
             errorMessage: '',
           ),
