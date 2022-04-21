@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/January/cubit/january_cubit.dart';
+import 'package:thankfulness/repositories/item_repositories.dart';
 
 class January extends StatelessWidget {
   const January({
@@ -37,10 +38,8 @@ class January extends StatelessWidget {
 class JanuarygratefulPage extends StatelessWidget {
   JanuarygratefulPage({Key? key}) : super(key: key);
 
-
   final controller = TextEditingController();
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +53,9 @@ class JanuarygratefulPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: BlocProvider(
-        create: (context) => JanuaryCubit(),
+        create: (context) => JanuaryCubit(
+          ItemRepositories(),
+        ),
         child: BlocBuilder<JanuaryCubit, JanuaryState>(
           builder: (context, state) {
             return FloatingActionButton(
@@ -73,7 +74,9 @@ class JanuarygratefulPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => JanuaryCubit()..start(),
+        create: (context) => JanuaryCubit(
+          ItemRepositories(),
+        )..start(),
         child: BlocBuilder<JanuaryCubit, JanuaryState>(
           builder: (context, state) {
             if (state.errorMessage.isNotEmpty) {
@@ -97,7 +100,7 @@ class JanuarygratefulPage extends StatelessWidget {
                               .delete(document: itemModel, id: itemModel.id);
                         },
                         child: NameWidget(
-                          itemModel.id,
+                          itemModel.name,
                         ),
                       );
                     },
