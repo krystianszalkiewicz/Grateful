@@ -6,11 +6,9 @@ class JanuaryState {
   final bool isLoading;
   final String errorMessage;
 
-
   const JanuaryState({
-     this.documents = const [],
+    this.documents = const [],
     required this.isLoading,
     required this.errorMessage,
-
   });
 }

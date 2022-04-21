@@ -525,8 +525,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.9"
-<<<<<<< HEAD
-=======
   test_core:
     dependency: transitive
     description:
@@ -534,7 +532,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.13"
->>>>>>> 5bc52d91c2d799bed14c1a972a59a21cbdce82ff
   typed_data:
     dependency: transitive
     description:
@@ -549,8 +546,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-<<<<<<< HEAD
-=======
   vm_service:
     dependency: transitive
     description:
@@ -579,7 +574,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
->>>>>>> 5bc52d91c2d799bed14c1a972a59a21cbdce82ff
   win32:
     dependency: transitive
     description:
