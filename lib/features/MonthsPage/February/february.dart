@@ -1,7 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/January/january.dart';
+
+import 'cubit/february_cubit.dart';
 
 class February extends StatelessWidget {
   const February({
@@ -51,49 +53,63 @@ class FebruaryGratefulPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          FirebaseFirestore.instance.collection('february').add(
-            {'name': controller.text},
-          );
-          controller.clear();
-        },
-        child: const Icon(
-          Icons.add,
-          color: Color.fromARGB(255, 47, 184, 129),
+      floatingActionButton: BlocProvider(
+        create: (context) => FebruaryCubit(),
+        child: BlocBuilder<FebruaryCubit, FebruaryState>(
+          builder: (context, state) {
+            return FloatingActionButton(
+              onPressed: () {
+                context.read<FebruaryCubit>().add(
+                      name: controller.text,
+                    );
+                controller.clear();
+              },
+              child: const Icon(
+                Icons.add,
+                color: Color.fromARGB(255, 47, 184, 129),
+              ),
+            );
+          },
         ),
       ),
-      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: FirebaseFirestore.instance.collection('february').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Something went wrong');
-            }
+      body: BlocProvider(
+        create: (context) => FebruaryCubit()..start(),
+        child: BlocBuilder<FebruaryCubit, FebruaryState>(
+            builder: (context, state) {
+          if (state.errorMessage.isNotEmpty) {
+            return Text('Something went wrong: ${state.errorMessage}');
+          }
 
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            final documents = snapshot.data!.docs;
-            return ListView(
-              children: [
-                for (final document in documents) ...[
-                  Dismissible(
-                    key: ValueKey(document.id),
-                    onDismissed: (_) {
-                      FirebaseFirestore.instance
-                          .collection('february')
-                          .doc(document.id)
-                          .delete();
-                    },
-                    child: NameWidget(
-                      document['name'],
-                    ),
-                  ),
-                ],
-                TextField(controller: controller),
+          if (state.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final documents = state.documents;
+
+          return ListView(
+            children: [
+              for (final document in documents) ...[
+                BlocBuilder<FebruaryCubit, FebruaryState>(
+                  builder: (context, state) {
+                    return Dismissible(
+                      key: ValueKey(document.id),
+                      onDismissed: (_) {
+                        context.read<FebruaryCubit>().delete(
+                              document: document,
+                              id: document.id,
+                            );
+                      },
+                      child: NameWidget(
+                        document['name'],
+                      ),
+                    );
+                  },
+                ),
               ],
-            );
-          }),
+              TextField(controller: controller),
+            ],
+          );
+        }),
+      ),
     );
   }
 }
