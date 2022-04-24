@@ -54,7 +54,7 @@ class JanuarygratefulPage extends StatelessWidget {
       ),
       floatingActionButton: BlocProvider(
         create: (context) => JanuaryCubit(
-          ItemRepositories(),
+          JanuaryRepositories(),
         ),
         child: BlocBuilder<JanuaryCubit, JanuaryState>(
           builder: (context, state) {
@@ -75,7 +75,7 @@ class JanuarygratefulPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => JanuaryCubit(
-          ItemRepositories(),
+          JanuaryRepositories(),
         )..start(),
         child: BlocBuilder<JanuaryCubit, JanuaryState>(
           builder: (context, state) {

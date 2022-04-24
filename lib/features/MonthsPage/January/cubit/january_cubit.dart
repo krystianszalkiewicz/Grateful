@@ -17,7 +17,7 @@ class JanuaryCubit extends Cubit<JanuaryState> {
           ),
         );
 
-  final ItemRepositories _itemRepositories;
+  final JanuaryRepositories _itemRepositories;
   StreamSubscription? _streamSubscription;
 
   Future<void> delete({
