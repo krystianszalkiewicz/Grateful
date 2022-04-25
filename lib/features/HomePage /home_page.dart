@@ -22,6 +22,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(25),
+          ),
+        ),
         title: Center(
           child: Text(
             'Try to be grateful everyday',
@@ -35,14 +40,14 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: GridView.count( 
+          child: GridView.count(
             primary: false,
             crossAxisCount: 2,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             shrinkWrap: true,
             childAspectRatio: 1.5,
-            children: const [ 
+            children: const [
               January(),
               February(),
               March(),

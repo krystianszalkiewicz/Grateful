@@ -43,6 +43,11 @@ class MarchGratefulPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(40),
+          ),
+        ),
         title: Text(
           'Find resons to be grateful every day',
           style: GoogleFonts.pacifico(

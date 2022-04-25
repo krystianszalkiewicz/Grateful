@@ -1,48 +1,47 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 
-part 'february_state.dart';
+part 'march_state.dart';
 
-class FebruaryCubit extends Cubit<FebruaryState> {
-  FebruaryCubit()
+class MarchCubit extends Cubit<MarchState> {
+  MarchCubit()
       : super(
-          const FebruaryState(
-            documents: [],
+          const MarchState(
             errorMessage: '',
-            isLoading: false,
+            isLoadiing: false,
+            documents: [],
           ),
         );
 
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit(
-      const FebruaryState(
-        documents: [],
-        isLoading: true,
-        errorMessage: '',
-      ),
+    const MarchState(
+      errorMessage: '',
+      isLoadiing: true,
+      documents: [],
     );
 
     _streamSubscription =
-        FirebaseFirestore.instance.collection('february').snapshots().listen(
+        FirebaseFirestore.instance.collection('march').snapshots().listen(
       (data) {
         emit(
-          FebruaryState(
-            documents: data.docs,
-            isLoading: false,
+          MarchState(
             errorMessage: '',
+            isLoadiing: false,
+            documents: data.docs,
           ),
         );
       },
     )..onError(
             (error) {
-              FebruaryState(
-                documents: const [],
-                isLoading: false,
+              MarchState(
                 errorMessage: error.toString(),
+                isLoadiing: false,
+                documents: const [],
               );
             },
           );
