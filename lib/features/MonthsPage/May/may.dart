@@ -13,20 +13,30 @@ class May extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(
-          'May',
-          style: GoogleFonts.pacifico(
-            color: Colors.white,
-            fontSize: 30,
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => MayGratefulPage(),
+          ),
+        );
+      },
+      child: Container(
+        child: Center(
+          child: Text(
+            'May',
+            style: GoogleFonts.pacifico(
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
         ),
+        color: const Color.fromARGB(255, 23, 213, 169),
       ),
-      color: const Color.fromARGB(255, 23, 213, 169),
     );
   }
 }
+
 class MayGratefulPage extends StatelessWidget {
   MayGratefulPage({Key? key}) : super(key: key);
 
