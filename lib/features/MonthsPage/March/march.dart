@@ -1,7 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../January/january.dart';
+import 'cubit/march_cubit.dart';
 
 class March extends StatelessWidget {
   const March({
@@ -56,49 +57,61 @@ class MarchGratefulPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          FirebaseFirestore.instance.collection('march').add(
-            {'name': controller.text},
-          );
-          controller.clear();
-        },
-        child: const Icon(
-          Icons.add,
-          color: Color.fromARGB(255, 47, 184, 129),
+      floatingActionButton: BlocProvider(
+        create: (context) => MarchCubit(),
+        child: BlocBuilder<MarchCubit, MarchState>(
+          builder: (context, state) {
+            return FloatingActionButton(
+              onPressed: () {
+                context.read<MarchCubit>().add(
+                      name: controller.text,
+                    );
+                controller.clear();
+              },
+              child: const Icon(
+                Icons.add,
+                color: Color.fromARGB(255, 47, 184, 129),
+              ),
+            );
+          },
         ),
       ),
-      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          stream: FirebaseFirestore.instance.collection('march').snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Something went wrong');
-            }
-
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            final documents = snapshot.data!.docs;
-            return ListView(
-              children: [
-                for (final document in documents) ...[
-                  Dismissible(
-                    key: ValueKey(document.id),
-                    onDismissed: (_) {
-                      FirebaseFirestore.instance
-                          .collection('february')
-                          .doc(document.id)
-                          .delete();
-                    },
-                    child: NameWidget(
-                      document['name'],
+      body: BlocProvider(
+          create: (context) => MarchCubit()..start(),
+          child: BlocBuilder<MarchCubit, MarchState>(
+            builder: (context, state) {
+              if (state.errorMessage.isNotEmpty) {
+                return const Text('Something went wrong');
+              }
+              if (state.isLoadiing) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              final documents = state.documents;
+              return ListView(
+                children: [
+                  for (final document in documents) ...[
+                    BlocBuilder<MarchCubit, MarchState>(
+                      builder: (context, state) {
+                        return Dismissible(
+                          key: ValueKey(document.id),
+                          onDismissed: (_) {
+                            context.read<MarchCubit>().delete(
+                                  document: document,
+                                  id: document.id,
+                                );
+                          },
+                          child: NameWidget(
+                            document['name'],
+                          ),
+                        );
+                      },
                     ),
-                  ),
+                  ],
+                  TextField(controller: controller),
                 ],
-                TextField(controller: controller),
-              ],
-            );
-          }),
+              );
+            },
+          )),
     );
   }
 }

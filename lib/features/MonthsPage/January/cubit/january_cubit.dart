@@ -20,18 +20,7 @@ class JanuaryCubit extends Cubit<JanuaryState> {
   final JanuaryRepositories _itemRepositories;
   StreamSubscription? _streamSubscription;
 
-  Future<void> delete({
-    required document,
-    required id,
-  }) async {
-    await _itemRepositories.delete(id: document.id);
-  }
-
-  Future<void> add({
-    required String name,
-  }) async {
-    _itemRepositories.add(name: name);
-  }
+  
 
   Future<void> start() async {
     emit(
@@ -60,6 +49,19 @@ class JanuaryCubit extends Cubit<JanuaryState> {
           );
         },
       );
+  }
+
+  Future<void> delete({
+    required document,
+    required id,
+  }) async {
+    await _itemRepositories.delete(id: document.id);
+  }
+
+  Future<void> add({
+    required String name,
+  }) async {
+    _itemRepositories.add(name: name);
   }
 
   @override

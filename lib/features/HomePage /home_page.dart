@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             shrinkWrap: true,
-            childAspectRatio: 1.5,
+            childAspectRatio: 1.7,
             children: const [
               January(),
               February(),

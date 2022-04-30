@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+import 'package:thankfulness/models/item_model.dart';
+import 'package:thankfulness/repositories/item_repositories.dart';
 
 part 'february_state.dart';
 
 class FebruaryCubit extends Cubit<FebruaryState> {
-  FebruaryCubit()
+  FebruaryCubit(this._februaryRepositories)
       : super(
           const FebruaryState(
             documents: [],
@@ -14,7 +15,7 @@ class FebruaryCubit extends Cubit<FebruaryState> {
             isLoading: false,
           ),
         );
-
+  final FebruaryRepositories _februaryRepositories;
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
@@ -26,43 +27,38 @@ class FebruaryCubit extends Cubit<FebruaryState> {
       ),
     );
 
-    _streamSubscription =
-        FirebaseFirestore.instance.collection('february').snapshots().listen(
+    _streamSubscription = _februaryRepositories.getItemsStream().listen(
       (data) {
         emit(
           FebruaryState(
-            documents: data.docs,
+            documents: data,
             isLoading: false,
             errorMessage: '',
           ),
         );
       },
     )..onError(
-            (error) {
-              FebruaryState(
-                documents: const [],
-                isLoading: false,
-                errorMessage: error.toString(),
-              );
-            },
+        (error) {
+          FebruaryState(
+            documents: const [],
+            isLoading: false,
+            errorMessage: error.toString(),
           );
+        },
+      );
   }
 
   Future<void> delete({
     required document,
     required id,
   }) async {
-    FirebaseFirestore.instance.collection('february').doc(document.id).delete();
+    await _februaryRepositories.delete(id: document.id);
   }
 
   Future<void> add({
     required name,
   }) async {
-    FirebaseFirestore.instance.collection('february').add(
-      {
-        'name': name,
-      },
-    );
+    _februaryRepositories.add(name: name);
   }
 
   @override

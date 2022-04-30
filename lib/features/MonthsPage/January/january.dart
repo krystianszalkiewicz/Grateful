@@ -100,9 +100,10 @@ class JanuarygratefulPage extends StatelessWidget {
                       return Dismissible(
                         key: ValueKey(itemModel.id),
                         onDismissed: (_) {
-                          context
-                              .read<JanuaryCubit>()
-                              .delete(document: itemModel, id: itemModel.id);
+                          context.read<JanuaryCubit>().delete(
+                                document: itemModel,
+                                id: itemModel.id,
+                              );
                         },
                         child: NameWidget(
                           itemModel.name,

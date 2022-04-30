@@ -4,7 +4,7 @@ part of 'february_cubit.dart';
 
 @immutable
 class FebruaryState {
-  final List<QueryDocumentSnapshot<Map<String, dynamic>>> documents;
+  final List<ItemModel> documents;
   final bool isLoading;
 
   final errorMessage;

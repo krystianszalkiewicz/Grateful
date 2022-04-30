@@ -23,3 +23,28 @@ class JanuaryRepositories {
     return FirebaseFirestore.instance.collection('january').add({'name': name});
   }
 }
+
+class FebruaryRepositories {
+  Stream<List<ItemModel>> getItemsStream() {
+    return FirebaseFirestore.instance.collection('february').snapshots().map(
+      (querySnapshot) {
+        return querySnapshot.docs.map((doc) {
+          return ItemModel(
+            name: doc['name'],
+            id: doc.id,
+          );
+        }).toList();
+      },
+    );
+  }
+
+  Future<void> delete({required String id}) {
+    return FirebaseFirestore.instance.collection('february').doc(id).delete();
+  }
+
+  Future<void> add({required String name}) {
+    return FirebaseFirestore.instance
+        .collection('february')
+        .add({'name': name});
+  }
+}

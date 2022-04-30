@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/January/january.dart';
+import 'package:thankfulness/repositories/item_repositories.dart';
 
 import 'cubit/february_cubit.dart';
 
@@ -44,7 +45,8 @@ class FebruaryGratefulPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(shape: const RoundedRectangleBorder(
+      appBar: AppBar(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(40),
           ),
@@ -58,7 +60,9 @@ class FebruaryGratefulPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: BlocProvider(
-        create: (context) => FebruaryCubit(),
+        create: (context) => FebruaryCubit(
+          FebruaryRepositories(),
+        ),
         child: BlocBuilder<FebruaryCubit, FebruaryState>(
           builder: (context, state) {
             return FloatingActionButton(
@@ -77,7 +81,9 @@ class FebruaryGratefulPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => FebruaryCubit()..start(),
+        create: (context) => FebruaryCubit(
+          FebruaryRepositories(),
+        )..start(),
         child: BlocBuilder<FebruaryCubit, FebruaryState>(
             builder: (context, state) {
           if (state.errorMessage.isNotEmpty) {
@@ -87,24 +93,22 @@ class FebruaryGratefulPage extends StatelessWidget {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          final documents = state.documents;
+          final itemModels = state.documents;
 
           return ListView(
             children: [
-              for (final document in documents) ...[
+              for (final itemModel in itemModels) ...[
                 BlocBuilder<FebruaryCubit, FebruaryState>(
                   builder: (context, state) {
                     return Dismissible(
-                      key: ValueKey(document.id),
+                      key: ValueKey(itemModel.id),
                       onDismissed: (_) {
                         context.read<FebruaryCubit>().delete(
-                              document: document,
-                              id: document.id,
+                              document: itemModel,
+                              id: itemModel.id,
                             );
                       },
-                      child: NameWidget(
-                        document['name'],
-                      ),
+                      child: NameWidget(itemModel.name),
                     );
                   },
                 ),

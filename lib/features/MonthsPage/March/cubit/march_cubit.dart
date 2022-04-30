@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
@@ -51,13 +50,13 @@ class MarchCubit extends Cubit<MarchState> {
     required document,
     required id,
   }) async {
-    FirebaseFirestore.instance.collection('february').doc(document.id).delete();
+    FirebaseFirestore.instance.collection('march').doc(document.id).delete();
   }
 
   Future<void> add({
     required name,
   }) async {
-    FirebaseFirestore.instance.collection('february').add(
+    FirebaseFirestore.instance.collection('march').add(
       {
         'name': name,
       },
