@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:thankfulness/features/Auth/pages/user_profile.dart';
 import '../MonthsPage/April/april.dart';
 import '../MonthsPage/August/august.dart';
 import '../MonthsPage/December/december.dart';
@@ -25,9 +26,15 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => FirebaseAuth.instance.signOut(),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const UserProfile(),
+                ),
+              );
+            },
             icon: const Icon(
-              Icons.logout,
+              Icons.person,
             ),
             color: const Color.fromARGB(255, 23, 213, 169),
           )
@@ -56,7 +63,7 @@ class HomePage extends StatelessWidget {
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             shrinkWrap: true,
-            childAspectRatio: 1.2,
+            childAspectRatio: 1.4,
             children: const [
               January(),
               February(),

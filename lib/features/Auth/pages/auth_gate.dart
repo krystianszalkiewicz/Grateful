@@ -14,13 +14,34 @@ class AuthGate extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return SignInScreen(
-            headerBuilder: (context, constraints, _) {
+            subtitleBuilder: (context, action) {
               return Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  action == AuthAction.signIn
+                      ? 'Welcome to Grateful! Please sign in to continue.'
+                      : 'Welcome to Grateful! Please create an account to continue',
+                ),
+              );
+            },
+            footerBuilder: (context, _) {
+              return const Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text(
+                  'By signing in, you agree to our terms and conditions.',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              );
+            },
+            headerBuilder: (context, constraints, _) {
+              return const Padding(
+                padding: EdgeInsets.all(1),
                 child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Image.network(
-                      'https://firebase.flutter.dev/img/flutterfire_300x.png'),
+                  aspectRatio: 0.5,
+                  child: Image(
+                    image: AssetImage('images/gratefeel.png'),
+                    width: 200,
+                  ),
                 ),
               );
             },
