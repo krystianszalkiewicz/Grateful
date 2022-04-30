@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../features/HomePage /home_page.dart';
-
-
+import '../features/Auth/pages/auth_gate.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -10,11 +8,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Grateful',
-      
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const HomePage(),
+      home: const AuthGate(),
     );
   }
 }

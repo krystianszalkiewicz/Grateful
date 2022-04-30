@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../MonthsPage/April/april.dart';
@@ -22,6 +23,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () => FirebaseAuth.instance.signOut(),
+            icon: const Icon(
+              Icons.logout,
+            ),
+            color: const Color.fromARGB(255, 23, 213, 169),
+          )
+        ],
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(25),
@@ -46,7 +56,7 @@ class HomePage extends StatelessWidget {
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             shrinkWrap: true,
-            childAspectRatio: 1.7,
+            childAspectRatio: 1.2,
             children: const [
               January(),
               February(),
