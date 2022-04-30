@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:thankfulness/repositories/item_repositories.dart';
 import '../January/january.dart';
 import 'cubit/march_cubit.dart';
 
@@ -58,7 +59,9 @@ class MarchGratefulPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: BlocProvider(
-        create: (context) => MarchCubit(),
+        create: (context) => MarchCubit(
+          MarchRepositories(),
+        ),
         child: BlocBuilder<MarchCubit, MarchState>(
           builder: (context, state) {
             return FloatingActionButton(
@@ -77,7 +80,9 @@ class MarchGratefulPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-          create: (context) => MarchCubit()..start(),
+          create: (context) => MarchCubit(
+                MarchRepositories(),
+              )..start(),
           child: BlocBuilder<MarchCubit, MarchState>(
             builder: (context, state) {
               if (state.errorMessage.isNotEmpty) {
@@ -86,22 +91,22 @@ class MarchGratefulPage extends StatelessWidget {
               if (state.isLoadiing) {
                 return const Center(child: CircularProgressIndicator());
               }
-              final documents = state.documents;
+              final itemModels = state.documents;
               return ListView(
                 children: [
-                  for (final document in documents) ...[
+                  for (final itemModel in itemModels) ...[
                     BlocBuilder<MarchCubit, MarchState>(
                       builder: (context, state) {
                         return Dismissible(
-                          key: ValueKey(document.id),
+                          key: ValueKey(itemModel.id),
                           onDismissed: (_) {
                             context.read<MarchCubit>().delete(
-                                  document: document,
-                                  id: document.id,
+                                  document: itemModel,
+                                  id: itemModel.id,
                                 );
                           },
                           child: NameWidget(
-                            document['name'],
+                            itemModel.name,
                           ),
                         );
                       },

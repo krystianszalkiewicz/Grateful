@@ -3,10 +3,9 @@ import 'package:thankfulness/models/item_model.dart';
 
 
 
-
-class MarchRepositories {
+class JanuaryRepositories {
   Stream<List<ItemModel>> getItemsStream() {
-    return FirebaseFirestore.instance.collection('march').snapshots().map(
+    return FirebaseFirestore.instance.collection('january').snapshots().map(
       (querySnapshot) {
         return querySnapshot.docs.map((doc) {
           return ItemModel(
@@ -19,13 +18,10 @@ class MarchRepositories {
   }
 
   Future<void> delete({required String id}) {
-    return FirebaseFirestore.instance.collection('march').doc(id).delete();
+    return FirebaseFirestore.instance.collection('january').doc(id).delete();
   }
 
   Future<void> add({required String name}) {
-    return FirebaseFirestore.instance
-        .collection('march')
-        .add({'name': name});
+    return FirebaseFirestore.instance.collection('january').add({'name': name});
   }
 }
-

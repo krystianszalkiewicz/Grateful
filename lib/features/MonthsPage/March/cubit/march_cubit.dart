@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+import 'package:thankfulness/models/item_model.dart';
+import 'package:thankfulness/repositories/item_repositories.dart';
 
 part 'march_state.dart';
 
 class MarchCubit extends Cubit<MarchState> {
-  MarchCubit()
+  MarchCubit(this._marchRepositories)
       : super(
           const MarchState(
             errorMessage: '',
@@ -16,7 +17,7 @@ class MarchCubit extends Cubit<MarchState> {
         );
 
   StreamSubscription? _streamSubscription;
-
+  final MarchRepositories _marchRepositories;
   Future<void> start() async {
     const MarchState(
       errorMessage: '',
@@ -24,43 +25,38 @@ class MarchCubit extends Cubit<MarchState> {
       documents: [],
     );
 
-    _streamSubscription =
-        FirebaseFirestore.instance.collection('march').snapshots().listen(
+    _streamSubscription = _marchRepositories.getItemsStream().listen(
       (data) {
         emit(
           MarchState(
             errorMessage: '',
             isLoadiing: false,
-            documents: data.docs,
+            documents: data,
           ),
         );
       },
     )..onError(
-            (error) {
-              MarchState(
-                errorMessage: error.toString(),
-                isLoadiing: false,
-                documents: const [],
-              );
-            },
+        (error) {
+          MarchState(
+            errorMessage: error.toString(),
+            isLoadiing: false,
+            documents: const [],
           );
+        },
+      );
   }
 
   Future<void> delete({
     required document,
     required id,
   }) async {
-    FirebaseFirestore.instance.collection('march').doc(document.id).delete();
+    await _marchRepositories.delete(id: document.id);
   }
 
   Future<void> add({
     required name,
   }) async {
-    FirebaseFirestore.instance.collection('march').add(
-      {
-        'name': name,
-      },
-    );
+    _marchRepositories.add(name: name);
   }
 
   @override

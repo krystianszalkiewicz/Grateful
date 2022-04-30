@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/January/cubit/january_cubit.dart';
-import 'package:thankfulness/repositories/item_repositories.dart';
+
+import '../../../repositories/january_repositories.dart';
+
 
 class January extends StatelessWidget {
   const January({

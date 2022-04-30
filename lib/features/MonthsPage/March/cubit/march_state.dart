@@ -2,7 +2,7 @@ part of 'march_cubit.dart';
 
 @immutable
 class MarchState {
-  final List<QueryDocumentSnapshot<Map<String, dynamic>>> documents;
+  final List<ItemModel> documents;
   final String errorMessage;
   final bool isLoadiing;
 
