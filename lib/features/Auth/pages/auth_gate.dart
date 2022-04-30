@@ -35,7 +35,7 @@ class AuthGate extends StatelessWidget {
             },
             headerBuilder: (context, constraints, _) {
               return const Padding(
-                padding: EdgeInsets.all(1),
+                padding: EdgeInsets.all(0.1),
                 child: AspectRatio(
                   aspectRatio: 0.5,
                   child: Image(
