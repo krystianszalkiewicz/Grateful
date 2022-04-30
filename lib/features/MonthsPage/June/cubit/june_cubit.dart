@@ -1,16 +1,15 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:thankfulness/models/item_model.dart';
-import '../../../../repositories/may_repositories.dart';
-part 'may_state.dart';
+import 'package:meta/meta.dart';
+import 'package:thankfulness/repositories/june_repositories.dart';
 
+import '../../../../models/item_model.dart';
+part 'june_state.dart';
 
-
-class MayCubit extends Cubit<MayState> {
-  MayCubit(this._mayRepositories)
+class JuneCubit extends Cubit<JuneState> {
+  JuneCubit(this._juneRepositories)
       : super(
-          const MayState(
+          const JuneState(
             errorMessage: '',
             isLoadiing: false,
             documents: [],
@@ -18,19 +17,19 @@ class MayCubit extends Cubit<MayState> {
         );
 
   StreamSubscription? _streamSubscription;
-  final MayRepositories _mayRepositories;
+  final JuneRepositories _juneRepositories;
 
   Future<void> start() async {
-    const MayState(
+    const JuneState(
       errorMessage: '',
       isLoadiing: true,
       documents: [],
     );
 
-    _streamSubscription = _mayRepositories.getItemsStream().listen(
+    _streamSubscription = _juneRepositories.getItemsStream().listen(
       (data) {
         emit(
-          MayState(
+          JuneState(
             errorMessage: '',
             isLoadiing: false,
             documents: data,
@@ -39,7 +38,7 @@ class MayCubit extends Cubit<MayState> {
       },
     )..onError(
         (error) {
-          MayState(
+          JuneState(
             errorMessage: error.toString(),
             isLoadiing: false,
             documents: const [],
@@ -52,13 +51,13 @@ class MayCubit extends Cubit<MayState> {
     required document,
     required id,
   }) async {
-    await _mayRepositories.delete(id: document.id);
+    await _juneRepositories.delete(id: document.id);
   }
 
   Future<void> add({
     required name,
   }) async {
-    _mayRepositories.add(name: name);
+    _juneRepositories.add(name: name);
   }
 
   @override
