@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:thankfulness/repositories/april_repositories.dart';
-import 'april_state.dart';
+import 'package:flutter/material.dart';
+import 'package:thankfulness/models/item_model.dart';
+import '../../../../repositories/may_repositories.dart';
+part 'may_state.dart';
 
-class AprilCubit extends Cubit<AprilState> {
-  AprilCubit(this._aprilRepositories)
+class MayCubit extends Cubit<MayState> {
+  MayCubit(this._mayRepositories)
       : super(
-          const AprilState(
+          const MayState(
             errorMessage: '',
             isLoadiing: false,
             documents: [],
@@ -14,19 +16,19 @@ class AprilCubit extends Cubit<AprilState> {
         );
 
   StreamSubscription? _streamSubscription;
-  final AprilRepositories _aprilRepositories;
+  final MayRepositories _mayRepositories;
 
   Future<void> start() async {
-    const AprilState(
+    const MayState(
       errorMessage: '',
       isLoadiing: true,
       documents: [],
     );
 
-    _streamSubscription = _aprilRepositories.getItemsStream().listen(
+    _streamSubscription = _mayRepositories.getItemsStream().listen(
       (data) {
         emit(
-          AprilState(
+          MayState(
             errorMessage: '',
             isLoadiing: false,
             documents: data,
@@ -35,7 +37,7 @@ class AprilCubit extends Cubit<AprilState> {
       },
     )..onError(
         (error) {
-          AprilState(
+          MayState(
             errorMessage: error.toString(),
             isLoadiing: false,
             documents: const [],
@@ -48,13 +50,13 @@ class AprilCubit extends Cubit<AprilState> {
     required document,
     required id,
   }) async {
-    await _aprilRepositories.delete(id: document.id);
+    await _mayRepositories.delete(id: document.id);
   }
 
   Future<void> add({
     required name,
   }) async {
-    _aprilRepositories.add(name: name);
+    _mayRepositories.add(name: name);
   }
 
   @override
