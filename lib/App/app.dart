@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
               minimumSize: const Size.fromHeight(50),
-              backgroundColor: Colors.black,
+              backgroundColor: Colors.yellow,
               primary: Colors.blue),
         ),
         primarySwatch: Colors.yellow,
