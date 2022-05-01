@@ -6,6 +6,7 @@ import '../../../repositories/april_repositories.dart';
 import '../January/january.dart';
 import 'cubit/april_cubit.dart';
 import 'cubit/april_state.dart';
+import 'package:rive/rive.dart';
 
 class April extends StatelessWidget {
   const April({
@@ -93,7 +94,9 @@ class AprilGratefulPage extends StatelessWidget {
                 return const Text('Something went wrong');
               }
               if (state.isLoadiing) {
-                return const Center(child: CircularProgressIndicator());
+                return const RiveAnimation.network(
+                  'https://rive.app/community/944-1847-lodinganimate/',
+                );
               }
               final itemModels = state.documents;
               return ListView(

@@ -42,6 +42,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutterfire_ui: ^0.4.0+4
   firebase_auth: ^3.3.16
+  rive: ^0.8.4
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
+    - assets/
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

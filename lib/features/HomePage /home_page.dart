@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rive/rive.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
 import '../MonthsPage/April/april.dart';
 import '../MonthsPage/August/august.dart';
@@ -71,7 +72,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    
+      body: const RiveAnimation.asset('assets/a.riv'),
     );
   }
 }
