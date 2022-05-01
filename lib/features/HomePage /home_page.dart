@@ -23,18 +23,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            ListView(
-              children: [
-                Container(),
-                Container(),
-                Container(),
-              ],
-            );
-          },
-          icon: const Icon(Icons.menu),
-        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -63,6 +51,24 @@ class HomePage extends StatelessWidget {
               fontSize: 26,
             ),
           ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            January(),
+            February(),
+            March(),
+            April(),
+            May(),
+            June(),
+            July(),
+            August(),
+            September(),
+            October(),
+            November(),
+            December(),
+          ],
         ),
       ),
       body: Center(
