@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
         ),
         title: Center(
           child: Text(
-            'Try to be grateful everyday',
+            'Be grateful everyday',
             style: GoogleFonts.pacifico(
               color: const Color.fromARGB(255, 23, 213, 169),
               fontSize: 26,
