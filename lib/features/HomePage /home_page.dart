@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
       ),
       drawer: Drawer(
         child: ListView(
-          children: [
+          children: const [
             January(),
             February(),
             March(),
@@ -71,33 +71,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: GridView.count(
-            primary: false,
-            crossAxisCount: 2,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            shrinkWrap: true,
-            childAspectRatio: 1.4,
-            children: const [
-              January(),
-              February(),
-              March(),
-              April(),
-              May(),
-              June(),
-              July(),
-              August(),
-              September(),
-              October(),
-              November(),
-              December(),
-            ],
-          ),
-        ),
-      ),
+    
     );
   }
 }

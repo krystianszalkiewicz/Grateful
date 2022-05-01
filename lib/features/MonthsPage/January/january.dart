@@ -5,7 +5,6 @@ import 'package:thankfulness/features/MonthsPage/January/cubit/january_cubit.dar
 
 import '../../../repositories/january_repositories.dart';
 
-
 class January extends StatelessWidget {
   const January({
     Key? key,
@@ -22,6 +21,8 @@ class January extends StatelessWidget {
         );
       },
       child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
             'January',

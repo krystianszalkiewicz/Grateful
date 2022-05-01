@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/January/january.dart';
 import 'package:thankfulness/repositories/february_repositories.dart';
 
-
 import 'cubit/february_cubit.dart';
 
 class February extends StatelessWidget {
@@ -23,6 +22,8 @@ class February extends StatelessWidget {
         );
       },
       child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
             'February',
