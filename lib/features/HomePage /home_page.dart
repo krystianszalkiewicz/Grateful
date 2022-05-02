@@ -83,6 +83,11 @@ class HomePage extends StatelessWidget {
               height: 20,
             ),
             NameYellowWidget('60'),
+            NameWidget('Daily gratitude counter'),
+            SizedBox(
+              height: 20,
+            ),
+            NameYellowWidget('2'),
             Expanded(
               child: RiveAnimation.asset(
                 'assets/a.riv',
