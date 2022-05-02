@@ -78,19 +78,24 @@ class HomePage extends StatelessWidget {
         ),
         body: Column(
           children: const [
+            NameWidget('Yearly grateful counter'),
+            NameYellowWidget('500'),
+            SizedBox(
+              height: 15,
+            ),
             NameWidget('Monthly grateful counter'),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             NameYellowWidget('60'),
-            NameWidget('Daily gratitude counter'),
+            NameWidget('Daily grateful counter'),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             NameYellowWidget('2'),
             Expanded(
               child: RiveAnimation.asset(
-                'assets/a.riv',
+                'assets/2.riv',
                 alignment: Alignment.bottomCenter,
               ),
             ),

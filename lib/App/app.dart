@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Grateful',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: const Color(0xEDEBE8E8),
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.yellow,
               primary: Colors.blue),
         ),
-        primarySwatch: Colors.yellow,
+        primarySwatch: Colors.blue,
       ),
       home: const AuthGate(),
     );

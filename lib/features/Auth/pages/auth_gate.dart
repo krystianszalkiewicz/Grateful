@@ -40,7 +40,7 @@ class AuthGate extends StatelessWidget {
                   child: AspectRatio(
                     aspectRatio: 3 / 2,
                     child: Image(
-                      image: AssetImage('images/gratefeel-2.gif'),
+                      image: AssetImage('images/b.gif'),
                       fit: BoxFit.scaleDown,
                       width: 150,
                     ),
@@ -54,7 +54,7 @@ class AuthGate extends StatelessWidget {
           );
         }
 
-        return  const HomePage();
+        return const HomePage();
       },
     );
   }
