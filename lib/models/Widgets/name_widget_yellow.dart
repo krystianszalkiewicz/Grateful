@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NameWidget extends StatelessWidget {
-  const NameWidget(
+class NameYellowWidget extends StatelessWidget {
+  const NameYellowWidget(
     this.name, {
     Key? key,
   }) : super(key: key);
   final String name;
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 23, 213, 169),
+        color: Colors.yellow,
         borderRadius: BorderRadius.all(
           Radius.circular(20),
         ),
