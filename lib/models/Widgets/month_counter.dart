@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NameYellowWidget extends StatelessWidget {
-  const NameYellowWidget(
+class MonthCounter extends StatelessWidget {
+  const MonthCounter(
     this.name, {
     Key? key,
   }) : super(key: key);

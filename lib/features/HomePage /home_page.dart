@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
-import 'package:thankfulness/models/Widgets/name_widget_yellow.dart';
+import 'package:thankfulness/models/Widgets/year_counter.dart';
+import '../../models/Widgets/day_conter.dart';
+import '../../models/Widgets/month_counter.dart';
 import '../MonthsPage/April/april.dart';
 import '../MonthsPage/August/august.dart';
 import '../MonthsPage/December/december.dart';
@@ -38,7 +40,7 @@ class HomePage extends StatelessWidget {
               icon: const Icon(
                 Icons.person,
               ),
-              color: const Color.fromARGB(255, 0, 0, 0),
+              color: Colors.black,
               iconSize: 35,
             )
           ],
@@ -79,7 +81,7 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: const [
             NameWidget('Yearly grateful counter'),
-            NameYellowWidget('500'),
+            YearCounter('500'),
             SizedBox(
               height: 15,
             ),
@@ -87,15 +89,15 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            NameYellowWidget('60'),
+            MonthCounter('60'),
             NameWidget('Daily grateful counter'),
             SizedBox(
               height: 15,
             ),
-            NameYellowWidget('2'),
+            DayCounter('2'),
             Expanded(
               child: RiveAnimation.asset(
-                'assets/2.riv',
+                'assets/a.riv',
                 alignment: Alignment.bottomCenter,
               ),
             ),

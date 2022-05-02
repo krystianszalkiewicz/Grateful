@@ -22,4 +22,12 @@ class AprilRepositories {
   Future<void> add({required String name}) {
     return FirebaseFirestore.instance.collection('april').add({'name': name});
   }
+
+  Future<int> getCount() async {
+    int count = await FirebaseFirestore.instance
+        .collection('april')
+        .get()
+        .then((value) => value.size);
+    return count;
+  }
 }

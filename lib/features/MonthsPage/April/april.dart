@@ -85,45 +85,46 @@ class AprilGratefulPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-          create: (context) => AprilCubit(
-                AprilRepositories(),
-              )..start(),
-          child: BlocBuilder<AprilCubit, AprilState>(
-            builder: (context, state) {
-              if (state.errorMessage.isNotEmpty) {
-                return const Text('Something went wrong');
-              }
-              if (state.isLoadiing) {
-                return const RiveAnimation.network(
-                  'https://rive.app/community/944-1847-lodinganimate/',
-                );
-              }
-              final itemModels = state.documents;
-              return ListView(
-                children: [
-                  for (final itemModel in itemModels) ...[
-                    BlocBuilder<AprilCubit, AprilState>(
-                      builder: (context, state) {
-                        return Dismissible(
-                          key: ValueKey(itemModel.id),
-                          onDismissed: (_) {
-                            context.read<AprilCubit>().delete(
-                                  document: itemModel,
-                                  id: itemModel.id,
-                                );
-                          },
-                          child: NameWidget(
-                            itemModel.name,
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                  TextField(controller: controller),
-                ],
+        create: (context) => AprilCubit(
+          AprilRepositories(),
+        )..start(),
+        child: BlocBuilder<AprilCubit, AprilState>(
+          builder: (context, state) {
+            if (state.errorMessage.isNotEmpty) {
+              return const Text('Something went wrong');
+            }
+            if (state.isLoadiing) {
+              return const RiveAnimation.network(
+                'https://rive.app/community/944-1847-lodinganimate/',
               );
-            },
-          )),
+            }
+            final itemModels = state.documents;
+            return ListView(
+              children: [
+                for (final itemModel in itemModels) ...[
+                  BlocBuilder<AprilCubit, AprilState>(
+                    builder: (context, state) {
+                      return Dismissible(
+                        key: ValueKey(itemModel.id),
+                        onDismissed: (_) {
+                          context.read<AprilCubit>().delete(
+                                document: itemModel,
+                                id: itemModel.id,
+                              );
+                        },
+                        child: NameWidget(
+                          itemModel.name,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+                TextField(controller: controller),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }
