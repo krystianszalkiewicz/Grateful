@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
-import 'package:thankfulness/models/Widgets/year_counter.dart';
-import '../../models/Widgets/day_conter.dart';
-import '../../models/Widgets/month_counter.dart';
+import 'package:thankfulness/models/Widgets/year/year_counter.dart';
+import '../../models/Widgets/day/day_conter.dart';
+import '../../models/Widgets/month/month_counter.dart';
 import '../MonthsPage/April/april.dart';
 import '../MonthsPage/August/august.dart';
 import '../MonthsPage/December/december.dart';
@@ -83,16 +83,16 @@ class HomePage extends StatelessWidget {
             NameWidget('Yearly grateful counter'),
             YearCounter('500'),
             SizedBox(
-              height: 15,
+              height: 5,
             ),
             NameWidget('Monthly grateful counter'),
             SizedBox(
-              height: 15,
+              height: 5,
             ),
-            MonthCounter('60'),
+            MonthCounter(),
             NameWidget('Daily grateful counter'),
             SizedBox(
-              height: 15,
+              height: 5,
             ),
             DayCounter('2'),
             Expanded(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thankfulness/models/item_model.dart';
+import 'package:thankfulness/models/Widgets/item/item_model.dart';
 
 
 

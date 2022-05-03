@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:thankfulness/repositories/january_repositories.dart';
 
 
-import '../../../../models/item_model.dart';
+import '../../../../models/Widgets/item/item_model.dart';
 
 part 'january_state.dart';
 

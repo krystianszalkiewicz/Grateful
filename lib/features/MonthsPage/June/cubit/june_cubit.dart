@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:thankfulness/repositories/june_repositories.dart';
 
-import '../../../../models/item_model.dart';
+import '../../../../models/Widgets/item/item_model.dart';
 part 'june_state.dart';
 
 class JuneCubit extends Cubit<JuneState> {

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/July/cubit/july_cubit.dart';
 import 'package:thankfulness/repositories/july_repositories.dart';
 
-import '../../../models/Widgets/name_widget.dart';
+import '../../../models/Widgets/name/name_widget.dart';
 
 class July extends StatelessWidget {
   const July({

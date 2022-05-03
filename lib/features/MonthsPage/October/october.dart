@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/repositories/october_repositories.dart';
 
-import '../../../models/Widgets/name_widget.dart';
+import '../../../models/Widgets/name/name_widget.dart';
 import 'cubit/october_cubit.dart';
 
 class October extends StatelessWidget {

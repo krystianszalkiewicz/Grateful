@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:thankfulness/models/item_model.dart';
+import 'package:thankfulness/models/Widgets/item/item_model.dart';
 import '../../../../repositories/may_repositories.dart';
 part 'may_state.dart';
 

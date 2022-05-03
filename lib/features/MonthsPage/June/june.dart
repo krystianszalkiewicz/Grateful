@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/repositories/june_repositories.dart';
-import '../../../models/Widgets/name_widget.dart';
+import '../../../models/Widgets/name/name_widget.dart';
 import 'cubit/june_cubit.dart';
 
 class June extends StatelessWidget {

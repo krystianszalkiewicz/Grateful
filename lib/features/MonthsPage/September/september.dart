@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/MonthsPage/September/cubit/september_cubit.dart';
 import 'package:thankfulness/repositories/september_repositories.dart';
 
-import '../../../models/Widgets/name_widget.dart';
+import '../../../models/Widgets/name/name_widget.dart';
 
 class September extends StatelessWidget {
   const September({

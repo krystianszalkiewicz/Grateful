@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:thankfulness/models/item_model.dart';
+import 'package:thankfulness/models/Widgets/item/item_model.dart';
 
 import 'package:thankfulness/repositories/march_repositories.dart';
 
