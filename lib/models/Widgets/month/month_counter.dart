@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/models/Widgets/month/cubit/month_cubit.dart';
+import 'package:thankfulness/repositories/april_repositories.dart';
 
 class MonthCounter extends StatelessWidget {
   const MonthCounter({
@@ -14,7 +13,7 @@ class MonthCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MonthCubit(),
+      create: (context) => MonthCubit(AprilRepositories())..start(),
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.yellow,
@@ -34,12 +33,9 @@ class MonthCounter extends StatelessWidget {
                 'https://rive.app/community/944-1847-lodinganimate/',
               );
             }
-            final document = state.documents;
+
             return Text(
-              context
-                  .read<MonthCubit>()
-                  .getCount(document.length, document)
-                  .toString(),
+              context.read<MonthCubit>().getCount().toString(),
               style: GoogleFonts.pacifico(
                 color: Colors.white,
                 fontSize: 23,
