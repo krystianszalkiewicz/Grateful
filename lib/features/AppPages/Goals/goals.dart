@@ -54,10 +54,10 @@ class GoalsGratefulPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Find resons to be grateful every day',
+          'Moje cele do zrealizowania',
           style: GoogleFonts.pacifico(
-            color: Colors.lightBlue,
-            fontSize: 20,
+            color: const Color.fromARGB(255, 23, 213, 169),
+            fontSize: 25,
           ),
         ),
       ),

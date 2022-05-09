@@ -48,11 +48,6 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
       );
   }
 
-  Future<int?> getCount() async {
-    FirebaseFirestore.instance.collection('grateful').snapshots();
-    return null;
-  }
-
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

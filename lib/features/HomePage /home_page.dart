@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
+import 'package:thankfulness/features/AppPages/Goals/goals.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
-import 'package:thankfulness/features/MonthsPage/Goals/goals.dart';
 import 'package:thankfulness/models/Widgets/goals/goals_counter.dart';
 import 'package:thankfulness/models/Widgets/grateful/grateful_counter.dart';
-import '../MonthsPage/Grateful/grateful.dart';
+
+import '../AppPages/Grateful/grateful.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({

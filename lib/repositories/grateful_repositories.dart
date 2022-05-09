@@ -24,4 +24,9 @@ class GratefulRepositories {
         .collection('grateful')
         .add({'name': name});
   }
+
+  Future<int?> getCount() async {
+    FirebaseFirestore.instance.collection('grateful').snapshots();
+    return null;
+  }
 }

@@ -4,7 +4,6 @@ import 'package:meta/meta.dart';
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
-
 part 'goals_state.dart';
 
 class GoalsCubit extends Cubit<GoalsState> {

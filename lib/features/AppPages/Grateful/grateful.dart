@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:thankfulness/features/MonthsPage/Grateful/cubit/grateful_cubit.dart';
+import 'package:thankfulness/features/AppPages/Grateful/cubit/grateful_cubit.dart';
+
 import 'package:thankfulness/repositories/grateful_repositories.dart';
 
 class Grateful extends StatelessWidget {
