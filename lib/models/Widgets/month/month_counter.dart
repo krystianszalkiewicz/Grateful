@@ -35,7 +35,7 @@ class MonthCounter extends StatelessWidget {
             }
 
             return Text(
-              context.read<MonthCubit>().getCount().toString(),
+              state.count.length.toString(),
               style: GoogleFonts.pacifico(
                 color: Colors.white,
                 fontSize: 23,

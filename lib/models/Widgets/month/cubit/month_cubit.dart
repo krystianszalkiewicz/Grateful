@@ -33,7 +33,7 @@ class MonthCubit extends Cubit<MonthState> {
           MonthState(
             errorMessage: '',
             isLoadiing: false,
-            count: data.length,
+            count: data,
           ),
         );
       },
@@ -49,7 +49,7 @@ class MonthCubit extends Cubit<MonthState> {
   }
 
   Future<int?> getCount() async {
-    await FirebaseFirestore.instance.collection('april').snapshots().length;
+    FirebaseFirestore.instance.collection('april').snapshots();
     return null;
   }
 
