@@ -22,4 +22,9 @@ class GoalsRepositories {
   Future<void> add({required String name}) {
     return FirebaseFirestore.instance.collection('goals').add({'name': name});
   }
+
+  Future<int?> getCount() async {
+    FirebaseFirestore.instance.collection('goals').snapshots();
+    return null;
+  }
 }

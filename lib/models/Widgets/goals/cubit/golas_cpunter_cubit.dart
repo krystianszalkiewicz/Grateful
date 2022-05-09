@@ -1,34 +1,36 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:thankfulness/repositories/grateful_repositories.dart';
-import '../../item/item_model.dart';
-part 'grateful_counter_state.dart';
+import 'package:thankfulness/models/Widgets/item/item_model.dart';
+import 'package:thankfulness/repositories/goals_repositories.dart';
 
-class GratefulCounterCubit extends Cubit<GratefulCounterState> {
-  GratefulCounterCubit(this._gratefulRepositories)
+part 'goals_counter_state.dart';
+
+class GoalsCounterCubit extends Cubit<GoalsCounterState> {
+  GoalsCounterCubit(this._goalsRepositories)
       : super(
-          const GratefulCounterState(
+        const  GoalsCounterState(
             errorMessage: '',
             isLoadiing: false,
             count: [],
           ),
         );
 
-  StreamSubscription? _streamSubscription;
-  final GratefulRepositories _gratefulRepositories;
+        StreamSubscription? _streamSubscription;
+  final GoalsRepositories _goalsRepositories;
 
   Future<void> start() async {
-    const GratefulCounterState(
+    const GoalsCounterState(
       errorMessage: '',
       isLoadiing: true,
       count: [],
     );
 
-    _streamSubscription = _gratefulRepositories.getItemsStream().listen(
+    _streamSubscription = _goalsRepositories.getItemsStream().listen(
       (data) {
         emit(
-          GratefulCounterState(
+          GoalsCounterState(
             errorMessage: '',
             isLoadiing: false,
             count: data,
@@ -37,7 +39,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
       },
     )..onError(
         (error) {
-          GratefulCounterState(
+          GoalsCounterState(
             errorMessage: error.toString(),
             isLoadiing: false,
             count: const [],

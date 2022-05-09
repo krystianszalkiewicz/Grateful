@@ -136,8 +136,8 @@ class NameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
+    return Container( 
+      decoration: const BoxDecoration( 
         color: Color.fromARGB(255, 23, 213, 169),
         borderRadius: BorderRadius.all(
           Radius.circular(20),
@@ -145,7 +145,7 @@ class NameWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
-      child: Text(
+      child: Text( 
         (name),
         style: GoogleFonts.pacifico(
           color: Colors.white,

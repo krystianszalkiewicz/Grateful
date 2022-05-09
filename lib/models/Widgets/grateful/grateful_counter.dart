@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/models/Widgets/grateful/cubit/grateful_counter_cubit.dart';
-
 import 'package:thankfulness/repositories/grateful_repositories.dart';
 
 class GratefulCounter extends StatelessWidget {
