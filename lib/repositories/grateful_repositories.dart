@@ -3,7 +3,7 @@ import 'package:thankfulness/models/Widgets/item/item_model.dart';
 
 class GratefulRepositories {
   Stream<List<ItemModel>> getItemsStream() {
-    return FirebaseFirestore.instance.collection('april').snapshots().map(
+    return FirebaseFirestore.instance.collection('grateful').snapshots().map(
       (querySnapshot) {
         return querySnapshot.docs.map((doc) {
           return ItemModel(
@@ -16,12 +16,12 @@ class GratefulRepositories {
   }
 
   Future<void> delete({required String id}) {
-    return FirebaseFirestore.instance.collection('april').doc(id).delete();
+    return FirebaseFirestore.instance.collection('grateful').doc(id).delete();
   }
 
   Future<void> add({required String name}) {
-    return FirebaseFirestore.instance.collection('april').add({'name': name});
+    return FirebaseFirestore.instance
+        .collection('grateful')
+        .add({'name': name});
   }
-
-
 }

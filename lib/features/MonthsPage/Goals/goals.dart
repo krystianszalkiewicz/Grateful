@@ -26,7 +26,7 @@ class Goals extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
-            'Goals',
+            'Moje cele',
             style: GoogleFonts.pacifico(
               color: Colors.white,
               fontSize: 30,

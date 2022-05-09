@@ -8,7 +8,7 @@ import '../../item/item_model.dart';
 part 'grateful_counter_state.dart';
 
 class GratefulCounterCubit extends Cubit<GratefulCounterState> {
-  GratefulCounterCubit(this._aprilRepositories)
+  GratefulCounterCubit(this._gratefulRepositories)
       : super(
           const GratefulCounterState(
             errorMessage: '',
@@ -18,7 +18,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
         );
 
   StreamSubscription? _streamSubscription;
-  final GratefulRepositories _aprilRepositories;
+  final GratefulRepositories _gratefulRepositories;
 
   Future<void> start() async {
     const GratefulCounterState(
@@ -27,7 +27,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
       count: [],
     );
 
-    _streamSubscription = _aprilRepositories.getItemsStream().listen(
+    _streamSubscription = _gratefulRepositories.getItemsStream().listen(
       (data) {
         emit(
           GratefulCounterState(
@@ -49,7 +49,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
   }
 
   Future<int?> getCount() async {
-    FirebaseFirestore.instance.collection('april').snapshots();
+    FirebaseFirestore.instance.collection('grateful').snapshots();
     return null;
   }
 

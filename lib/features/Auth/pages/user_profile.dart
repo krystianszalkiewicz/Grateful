@@ -16,7 +16,7 @@ class UserProfile extends StatelessWidget {
         ),
         title: Center(
           child: Text(
-            'User Profile',
+            'Twój profil',
             style: GoogleFonts.pacifico(
               color: const Color.fromARGB(255, 23, 213, 169),
               fontSize: 35,

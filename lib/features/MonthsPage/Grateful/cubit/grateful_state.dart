@@ -7,7 +7,7 @@ class GratefulState {
   final String errorMessage;
 
   const GratefulState({
-    this.documents = const [],
+    required this.documents,
     required this.isLoading,
     required this.errorMessage,
   });

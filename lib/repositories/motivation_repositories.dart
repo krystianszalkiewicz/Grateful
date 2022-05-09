@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 
-class JanuaryRepositories {
+class MotivationRepositories {
   Stream<List<ItemModel>> getItemsStream() {
     return FirebaseFirestore.instance.collection('january').snapshots().map(
       (querySnapshot) {

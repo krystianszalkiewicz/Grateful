@@ -40,10 +40,10 @@ class HomePage extends StatelessWidget {
           ),
           title: Center(
             child: Text(
-              'Be grateful everyday',
+              'Wdzięczność',
               style: GoogleFonts.pacifico(
                 color: const Color.fromARGB(255, 23, 213, 169),
-                fontSize: 26,
+                fontSize: 35,
               ),
             ),
           ),
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
               height: 5,
             ),
             GratefulCounter(),
-            NameWidget('Twoje liczba celi do realizowania '),
+            NameWidget('Twoja liczba celi do realizowania '),
             SizedBox(
               height: 5,
             ),

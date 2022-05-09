@@ -5,6 +5,7 @@ import 'package:thankfulness/repositories/grateful_repositories.dart';
 import '../../../../models/Widgets/item/item_model.dart';
 
 part 'grateful_state.dart';
+
 class GratefulCubit extends Cubit<GratefulState> {
   GratefulCubit(this._itemRepositories)
       : super(
@@ -17,8 +18,6 @@ class GratefulCubit extends Cubit<GratefulState> {
 
   final GratefulRepositories _itemRepositories;
   StreamSubscription? _streamSubscription;
-
-  
 
   Future<void> start() async {
     emit(

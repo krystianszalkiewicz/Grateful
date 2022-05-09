@@ -24,7 +24,7 @@ class Grateful extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
-            'Twoje powody do wdzięczności',
+            'Moje wdzięczności',
             style: GoogleFonts.pacifico(
               color: Colors.white,
               fontSize: 30,
@@ -52,7 +52,7 @@ class GratefulPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Find resons to be grateful every day',
+          'Moje powody do wdzięczności',
           style: GoogleFonts.pacifico(
             color: Colors.lightBlue,
             fontSize: 20,
