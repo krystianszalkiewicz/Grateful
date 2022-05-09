@@ -5,9 +5,9 @@ import 'package:thankfulness/features/AppPages/Goals/goals.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
 import 'package:thankfulness/models/Widgets/goals/goals_counter.dart';
 import 'package:thankfulness/models/Widgets/grateful/grateful_counter.dart';
+import 'package:thankfulness/models/Widgets/motivationButton/motivation_button.dart';
 
 import '../AppPages/Grateful/grateful.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -73,11 +73,11 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            GoalsCounter('20'),
+            GoalsCounter(),
             SizedBox(
               height: 5,
             ),
-            NameWidget('Motywacyjny cytat od Misia'),
+            MotivationButton(),
             Expanded(
               child: RiveAnimation.asset(
                 'assets/a.riv',
@@ -90,3 +90,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

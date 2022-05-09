@@ -7,10 +7,10 @@ import 'package:thankfulness/repositories/goals_repositories.dart';
 
 class GoalsCounter extends StatelessWidget {
   const GoalsCounter(
-    this.name, {
+    {
     Key? key,
   }) : super(key: key);
-  final String name;
+  
 
   @override
   Widget build(BuildContext context) {
