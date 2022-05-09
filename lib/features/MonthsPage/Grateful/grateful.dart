@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../models/Widgets/name/name_widget.dart';
-import 'cubit/april_cubit.dart';
-import 'cubit/april_state.dart';
-import 'package:rive/rive.dart';
+import 'package:thankfulness/features/MonthsPage/Grateful/cubit/grateful_cubit.dart';
+import 'package:thankfulness/repositories/grateful_repositories.dart';
 
-class Goals extends StatelessWidget {
-  const Goals({
+class Grateful extends StatelessWidget {
+  const Grateful({
     Key? key,
   }) : super(key: key);
 
@@ -17,7 +15,7 @@ class Goals extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => AprilGratefulPage(),
+            builder: (_) => GratefulPage(),
           ),
         );
       },
@@ -26,7 +24,7 @@ class Goals extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
-            'April',
+            'Twoje powody do wdzięczności',
             style: GoogleFonts.pacifico(
               color: Colors.white,
               fontSize: 30,
@@ -39,8 +37,8 @@ class Goals extends StatelessWidget {
   }
 }
 
-class GoalsPage extends StatelessWidget {
- GoalsPage({Key? key}) : super(key: key);
+class GratefulPage extends StatelessWidget {
+  GratefulPage({Key? key}) : super(key: key);
 
   final controller = TextEditingController();
 
@@ -62,14 +60,14 @@ class GoalsPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: BlocProvider(
-        create: (context) => AprilCubit(
-          GoalsRepositories(),
+        create: (context) => GratefulCubit(
+          GratefulRepositories(),
         ),
-        child: BlocBuilder<AprilCubit, AprilState>(
+        child: BlocBuilder<GratefulCubit, GratefulState>(
           builder: (context, state) {
             return FloatingActionButton(
               onPressed: () {
-                context.read<AprilCubit>().add(
+                context.read<GratefulCubit>().add(
                       name: controller.text,
                     );
                 controller.clear();
@@ -83,29 +81,28 @@ class GoalsPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => AprilCubit(
-          GoalsRepositories(),
+        create: (context) => GratefulCubit(
+          GratefulRepositories(),
         )..start(),
-        child: BlocBuilder<AprilCubit, AprilState>(
+        child: BlocBuilder<GratefulCubit, GratefulState>(
           builder: (context, state) {
             if (state.errorMessage.isNotEmpty) {
-              return const Text('Something went wrong');
+              return Text('Something went wrong : ${state.errorMessage}');
             }
-            if (state.isLoadiing) {
-              return const RiveAnimation.network(
-                'https://rive.app/community/944-1847-lodinganimate/',
-              );
+
+            if (state.isLoading) {
+              return const Center(child: CircularProgressIndicator());
             }
             final itemModels = state.documents;
             return ListView(
               children: [
                 for (final itemModel in itemModels) ...[
-                  BlocBuilder<AprilCubit, AprilState>(
+                  BlocBuilder<GratefulCubit, GratefulState>(
                     builder: (context, state) {
                       return Dismissible(
                         key: ValueKey(itemModel.id),
                         onDismissed: (_) {
-                          context.read<AprilCubit>().delete(
+                          context.read<GratefulCubit>().delete(
                                 document: itemModel,
                                 id: itemModel.id,
                               );
@@ -117,10 +114,41 @@ class GoalsPage extends StatelessWidget {
                     },
                   ),
                 ],
-                TextField(controller: controller),
+                TextField(
+                  controller: controller,
+                ),
               ],
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+class NameWidget extends StatelessWidget {
+  const NameWidget(
+    this.name, {
+    Key? key,
+  }) : super(key: key);
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 23, 213, 169),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      child: Text(
+        (name),
+        style: GoogleFonts.pacifico(
+          color: Colors.white,
+          fontSize: 23,
         ),
       ),
     );

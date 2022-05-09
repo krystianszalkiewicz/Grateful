@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../models/Widgets/name/name_widget.dart';
-import 'cubit/april_cubit.dart';
-import 'cubit/april_state.dart';
-import 'package:rive/rive.dart';
+import 'package:thankfulness/repositories/goals_repositories.dart';
 
-class Goals extends StatelessWidget {
-  const Goals({
+import '../../../models/Widgets/name/name_widget.dart';
+import 'cubit/goals_cubit.dart';
+
+class GoalsCounter extends StatelessWidget {
+  const GoalsCounter({
     Key? key,
   }) : super(key: key);
 
@@ -17,7 +17,7 @@ class Goals extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => AprilGratefulPage(),
+            builder: (_) => GoalsGratefulPage(),
           ),
         );
       },
@@ -26,7 +26,7 @@ class Goals extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
-            'April',
+            'Goals',
             style: GoogleFonts.pacifico(
               color: Colors.white,
               fontSize: 30,
@@ -39,8 +39,8 @@ class Goals extends StatelessWidget {
   }
 }
 
-class GoalsPage extends StatelessWidget {
- GoalsPage({Key? key}) : super(key: key);
+class GoalsGratefulPage extends StatelessWidget {
+  GoalsGratefulPage({Key? key}) : super(key: key);
 
   final controller = TextEditingController();
 
@@ -62,14 +62,14 @@ class GoalsPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: BlocProvider(
-        create: (context) => AprilCubit(
+        create: (context) => GoalsCubit(
           GoalsRepositories(),
         ),
-        child: BlocBuilder<AprilCubit, AprilState>(
+        child: BlocBuilder<GoalsCubit, GoalsState>(
           builder: (context, state) {
             return FloatingActionButton(
               onPressed: () {
-                context.read<AprilCubit>().add(
+                context.read<GoalsCubit>().add(
                       name: controller.text,
                     );
                 controller.clear();
@@ -83,45 +83,42 @@ class GoalsPage extends StatelessWidget {
         ),
       ),
       body: BlocProvider(
-        create: (context) => AprilCubit(
+        create: (context) => GoalsCubit(
           GoalsRepositories(),
         )..start(),
-        child: BlocBuilder<AprilCubit, AprilState>(
-          builder: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              return const Text('Something went wrong');
-            }
-            if (state.isLoadiing) {
-              return const RiveAnimation.network(
-                'https://rive.app/community/944-1847-lodinganimate/',
-              );
-            }
-            final itemModels = state.documents;
-            return ListView(
-              children: [
-                for (final itemModel in itemModels) ...[
-                  BlocBuilder<AprilCubit, AprilState>(
-                    builder: (context, state) {
-                      return Dismissible(
-                        key: ValueKey(itemModel.id),
-                        onDismissed: (_) {
-                          context.read<AprilCubit>().delete(
-                                document: itemModel,
-                                id: itemModel.id,
-                              );
-                        },
-                        child: NameWidget(
-                          itemModel.name,
-                        ),
-                      );
-                    },
-                  ),
-                ],
-                TextField(controller: controller),
+        child: BlocBuilder<GoalsCubit, GoalsState>(
+            builder: (context, state) {
+          if (state.errorMessage.isNotEmpty) {
+            return Text('Something went wrong: ${state.errorMessage}');
+          }
+
+          if (state.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final itemModels = state.documents;
+
+          return ListView(
+            children: [
+              for (final itemModel in itemModels) ...[
+                BlocBuilder<GoalsCubit, GoalsState>(
+                  builder: (context, state) {
+                    return Dismissible(
+                      key: ValueKey(itemModel.id),
+                      onDismissed: (_) {
+                        context.read<GoalsCubit>().delete(
+                              document: itemModel,
+                              id: itemModel.id,
+                            );
+                      },
+                      child: NameWidget(itemModel.name),
+                    );
+                  },
+                ),
               ],
-            );
-          },
-        ),
+              TextField(controller: controller),
+            ],
+          );
+        }),
       ),
     );
   }

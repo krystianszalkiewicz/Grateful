@@ -1,60 +1,56 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
-import 'package:thankfulness/repositories/grateful_repositories.dart';
-import 'april_state.dart';
 
-class AprilCubit extends Cubit<AprilState> {
-  AprilCubit(this._aprilRepositories)
+import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meta/meta.dart';
+import 'package:thankfulness/repositories/grateful_repositories.dart';
+import '../../item/item_model.dart';
+part 'grateful_counter_state.dart';
+
+class GratefulCounterCubit extends Cubit<GratefulCounterState> {
+  GratefulCounterCubit(this._aprilRepositories)
       : super(
-          const AprilState(
+          const GratefulCounterState(
             errorMessage: '',
             isLoadiing: false,
-            documents: [],
+            count: [],
           ),
         );
 
   StreamSubscription? _streamSubscription;
-  final AprilRepositories _aprilRepositories;
+  final GratefulRepositories _aprilRepositories;
 
   Future<void> start() async {
-    const AprilState(
+    const GratefulCounterState(
       errorMessage: '',
       isLoadiing: true,
-      documents: [],
+      count: [],
     );
 
     _streamSubscription = _aprilRepositories.getItemsStream().listen(
       (data) {
         emit(
-          AprilState(
+          GratefulCounterState(
             errorMessage: '',
             isLoadiing: false,
-            documents: data,
+            count: data,
           ),
         );
       },
     )..onError(
         (error) {
-          AprilState(
+          GratefulCounterState(
             errorMessage: error.toString(),
             isLoadiing: false,
-            documents: const [],
+            count: const [],
           );
         },
       );
   }
 
-  Future<void> delete({
-    required document,
-    required id,
-  }) async {
-    await _aprilRepositories.delete(id: document.id);
-  }
-
-  Future<void> add({
-    required name,
-  }) async {
-    _aprilRepositories.add(name: name);
+  Future<int?> getCount() async {
+    FirebaseFirestore.instance.collection('april').snapshots();
+    return null;
   }
 
   @override
