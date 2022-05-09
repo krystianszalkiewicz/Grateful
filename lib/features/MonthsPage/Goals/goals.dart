@@ -6,8 +6,8 @@ import 'package:thankfulness/repositories/goals_repositories.dart';
 import '../../../models/Widgets/name/name_widget.dart';
 import 'cubit/goals_cubit.dart';
 
-class GoalsCounter extends StatelessWidget {
-  const GoalsCounter({
+class Goals extends StatelessWidget {
+  const Goals({
     Key? key,
   }) : super(key: key);
 
@@ -86,8 +86,7 @@ class GoalsGratefulPage extends StatelessWidget {
         create: (context) => GoalsCubit(
           GoalsRepositories(),
         )..start(),
-        child: BlocBuilder<GoalsCubit, GoalsState>(
-            builder: (context, state) {
+        child: BlocBuilder<GoalsCubit, GoalsState>(builder: (context, state) {
           if (state.errorMessage.isNotEmpty) {
             return Text('Something went wrong: ${state.errorMessage}');
           }

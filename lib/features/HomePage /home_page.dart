@@ -3,12 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
 import 'package:thankfulness/features/MonthsPage/Goals/goals.dart';
+import 'package:thankfulness/models/Widgets/goals/goals_counter.dart';
 import 'package:thankfulness/models/Widgets/grateful/grateful_counter.dart';
-import 'package:thankfulness/models/Widgets/year/year_counter.dart';
-import '../../models/Widgets/day/day_conter.dart';
-import '../MonthsPage/February/february.dart';
 import '../MonthsPage/Grateful/grateful.dart';
-import '../MonthsPage/March/march.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -56,29 +53,29 @@ class HomePage extends StatelessWidget {
           child: ListView(
             children: const [
               Grateful(),
-              February(),
-              March(),
-              April(),
+              Goals(),
             ],
           ),
         ),
         body: Column(
           children: const [
-            NameWidget('Yearly grateful counter'),
-            YearCounter('500'),
             SizedBox(
               height: 5,
             ),
-            NameWidget('Monthly grateful counter'),
-            SizedBox(
-              height: 5,
-            ),
-            GratefulCounter(),
             NameWidget('Twoja ilośc powodów do wdzięczności'),
             SizedBox(
               height: 5,
             ),
-            GoalsCounter(),
+            GratefulCounter(),
+            NameWidget('Twoje liczba celi do realizowania '),
+            SizedBox(
+              height: 5,
+            ),
+            GoalsCounter('20'),
+            SizedBox(
+              height: 5,
+            ),
+            NameWidget('Motywacyjny cytat od Misia'),
             Expanded(
               child: RiveAnimation.asset(
                 'assets/a.riv',

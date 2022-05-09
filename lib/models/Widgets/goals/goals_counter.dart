@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DayCounter extends StatelessWidget {
-  const DayCounter(
+class GoalsCounter extends StatelessWidget {
+  const GoalsCounter(
     this.name, {
     Key? key,
   }) : super(key: key);
