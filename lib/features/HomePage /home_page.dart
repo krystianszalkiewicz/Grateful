@@ -2,21 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/features/Auth/pages/user_profile.dart';
+import 'package:thankfulness/features/MonthsPage/Goals/goals.dart';
+import 'package:thankfulness/models/Widgets/grateful/grateful_counter.dart';
 import 'package:thankfulness/models/Widgets/year/year_counter.dart';
 import '../../models/Widgets/day/day_conter.dart';
-import '../../models/Widgets/month/month_counter.dart';
-import '../MonthsPage/April/april.dart';
-import '../MonthsPage/August/august.dart';
-import '../MonthsPage/December/december.dart';
 import '../MonthsPage/February/february.dart';
-import '../MonthsPage/January/january.dart';
-import '../MonthsPage/July/july.dart';
-import '../MonthsPage/June/june.dart';
+import '../MonthsPage/Grateful/grateful.dart';
 import '../MonthsPage/March/march.dart';
-import '../MonthsPage/May/may.dart';
-import '../MonthsPage/November/november.dart';
-import '../MonthsPage/October/october.dart';
-import '../MonthsPage/September/september.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -63,18 +55,10 @@ class HomePage extends StatelessWidget {
         drawer: Drawer(
           child: ListView(
             children: const [
-              January(),
+              Grateful(),
               February(),
               March(),
               April(),
-              May(),
-              June(),
-              July(),
-              August(),
-              September(),
-              October(),
-              November(),
-              December(),
             ],
           ),
         ),
@@ -89,12 +73,12 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            MonthCounter(),
-            NameWidget('Daily grateful counter'),
+            GratefulCounter(),
+            NameWidget('Twoja ilośc powodów do wdzięczności'),
             SizedBox(
               height: 5,
             ),
-            DayCounter('2'),
+            GoalsCounter(),
             Expanded(
               child: RiveAnimation.asset(
                 'assets/a.riv',
