@@ -2,13 +2,13 @@ part of 'golas_cpunter_cubit.dart';
 
 @immutable
 class GoalsCounterState {
+  final List<ItemModel> count;
+  final String? errorMessage;
+  final Status status;
+
   const GoalsCounterState({
     required this.count,
     required this.errorMessage,
-    required this.isLoadiing,
+    this.status = Status.initial,
   });
-
-  final List<ItemModel> count;
-  final String errorMessage;
-  final bool isLoadiing;
 }

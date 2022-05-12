@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
+import 'package:thankfulness/App/core/enums.dart';
 import 'package:thankfulness/models/Widgets/goals/cubit/golas_cpunter_cubit.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
 class GoalsCounter extends StatelessWidget {
-  const GoalsCounter(
-    {
+  const GoalsCounter({
     Key? key,
   }) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,17 @@ class GoalsCounter extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: BlocBuilder<GoalsCounterCubit, GoalsCounterState>(
           builder: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              return const Text('Something went wrong');
+            if (state.status == Status.error) {
+              final errrorMessage =
+                  state.errorMessage ?? 'Wystąpił nieoczekiwany problem';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(errrorMessage),
+                  backgroundColor: Colors.amber,
+                ),
+              );
             }
-            if (state.isLoadiing) {
+            if (state.status == Status.loading) {
               return const RiveAnimation.network(
                 'https://rive.app/community/944-1847-lodinganimate/',
               );

@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
+import '../../../../App/core/enums.dart';
+
 part 'goals_counter_state.dart';
 
 class GoalsCounterCubit extends Cubit<GoalsCounterState> {
@@ -12,7 +14,7 @@ class GoalsCounterCubit extends Cubit<GoalsCounterState> {
       : super(
           const GoalsCounterState(
             errorMessage: '',
-            isLoadiing: false,
+            status: Status.initial,
             count: [],
           ),
         );
@@ -23,7 +25,7 @@ class GoalsCounterCubit extends Cubit<GoalsCounterState> {
   Future<void> start() async {
     const GoalsCounterState(
       errorMessage: '',
-      isLoadiing: true,
+      status: Status.loading,
       count: [],
     );
 
@@ -32,7 +34,7 @@ class GoalsCounterCubit extends Cubit<GoalsCounterState> {
         emit(
           GoalsCounterState(
             errorMessage: '',
-            isLoadiing: false,
+            status: Status.loading,
             count: data,
           ),
         );
@@ -41,7 +43,7 @@ class GoalsCounterCubit extends Cubit<GoalsCounterState> {
         (error) {
           GoalsCounterState(
             errorMessage: error.toString(),
-            isLoadiing: false,
+            status: Status.error,
             count: const [],
           );
         },
