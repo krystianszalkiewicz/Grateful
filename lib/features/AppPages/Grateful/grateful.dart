@@ -5,6 +5,8 @@ import 'package:thankfulness/features/AppPages/Grateful/cubit/grateful_cubit.dar
 
 import 'package:thankfulness/repositories/grateful_repositories.dart';
 
+import '../../../App/core/enums.dart';
+
 class Grateful extends StatelessWidget {
   const Grateful({
     Key? key,
@@ -87,11 +89,16 @@ class GratefulPage extends StatelessWidget {
         )..start(),
         child: BlocBuilder<GratefulCubit, GratefulState>(
           builder: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              return Text('Something went wrong : ${state.errorMessage}');
+            if (state.status == Status.error) {
+              final errorMessage =
+                  state.errorMessage ?? 'Wystąpił nieoczekiwany błąd';
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(errorMessage),
+                backgroundColor: Colors.amber,
+              ));
             }
 
-            if (state.isLoading) {
+            if (state.status == Status.loading) {
               return const Center(child: CircularProgressIndicator());
             }
             final itemModels = state.documents;
@@ -136,8 +143,8 @@ class NameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container( 
-      decoration: const BoxDecoration( 
+    return Container(
+      decoration: const BoxDecoration(
         color: Color.fromARGB(255, 23, 213, 169),
         borderRadius: BorderRadius.all(
           Radius.circular(20),
@@ -145,7 +152,7 @@ class NameWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
-      child: Text( 
+      child: Text(
         (name),
         style: GoogleFonts.pacifico(
           color: Colors.white,

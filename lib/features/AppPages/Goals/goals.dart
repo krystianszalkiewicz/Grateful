@@ -97,7 +97,7 @@ class GoalsGratefulPage extends StatelessWidget {
             ));
           }
 
-          if (state.status ==Status.loading) {
+          if (state.status == Status.loading) {
             return const Center(child: CircularProgressIndicator());
           }
           final itemModels = state.documents;

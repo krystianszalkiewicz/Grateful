@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:thankfulness/App/core/enums.dart';
 import 'package:thankfulness/repositories/grateful_repositories.dart';
 import '../../../../models/Widgets/item/item_model.dart';
 
@@ -10,21 +11,17 @@ class GratefulCubit extends Cubit<GratefulState> {
   GratefulCubit(this._itemRepositories)
       : super(
           const GratefulState(
-            documents: [],
-            errorMessage: '',
-            isLoading: false,
-          ),
+              documents: [], errorMessage: '', status: Status.initial),
         );
   StreamSubscription? _streamSubscription;
   final GratefulRepositories _itemRepositories;
-
 
   Future<void> start() async {
     emit(
       const GratefulState(
         documents: [],
         errorMessage: '',
-        isLoading: true,
+        status: Status.loading,
       ),
     );
     _streamSubscription = _itemRepositories.getItemsStream().listen(
@@ -32,7 +29,7 @@ class GratefulCubit extends Cubit<GratefulState> {
         emit(
           GratefulState(
             documents: data,
-            isLoading: false,
+            status: Status.success,
             errorMessage: '',
           ),
         );
@@ -41,7 +38,7 @@ class GratefulCubit extends Cubit<GratefulState> {
         (error) {
           GratefulState(
             documents: const [],
-            isLoading: false,
+            status: Status.error,
             errorMessage: error.toString(),
           );
         },

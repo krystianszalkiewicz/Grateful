@@ -3,12 +3,12 @@ part of 'grateful_cubit.dart';
 @immutable
 class GratefulState {
   final List<ItemModel> documents;
-  final bool isLoading;
-  final String errorMessage;
+  final Status status;
+  final String? errorMessage;
 
-  const GratefulState({
+   const GratefulState({
     required this.documents,
-    required this.isLoading,
     required this.errorMessage,
+    this.status = Status.initial,
   });
 }
