@@ -10,14 +10,14 @@ part 'goals_counter_state.dart';
 class GoalsCounterCubit extends Cubit<GoalsCounterState> {
   GoalsCounterCubit(this._goalsRepositories)
       : super(
-        const  GoalsCounterState(
+          const GoalsCounterState(
             errorMessage: '',
             isLoadiing: false,
             count: [],
           ),
         );
 
-        StreamSubscription? _streamSubscription;
+  StreamSubscription? _streamSubscription;
   final GoalsRepositories _goalsRepositories;
 
   Future<void> start() async {

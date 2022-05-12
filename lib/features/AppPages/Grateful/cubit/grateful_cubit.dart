@@ -15,9 +15,9 @@ class GratefulCubit extends Cubit<GratefulState> {
             isLoading: false,
           ),
         );
-
-  final GratefulRepositories _itemRepositories;
   StreamSubscription? _streamSubscription;
+  final GratefulRepositories _itemRepositories;
+
 
   Future<void> start() async {
     emit(

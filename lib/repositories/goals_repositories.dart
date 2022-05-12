@@ -27,4 +27,5 @@ class GoalsRepositories {
     FirebaseFirestore.instance.collection('goals').snapshots();
     return null;
   }
+  
 }

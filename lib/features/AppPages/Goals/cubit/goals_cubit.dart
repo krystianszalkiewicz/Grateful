@@ -4,6 +4,8 @@ import 'package:meta/meta.dart';
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
+import '../../../../App/core/enums.dart';
+
 part 'goals_state.dart';
 
 class GoalsCubit extends Cubit<GoalsState> {
@@ -12,7 +14,7 @@ class GoalsCubit extends Cubit<GoalsState> {
           const GoalsState(
             documents: [],
             errorMessage: '',
-            isLoading: false,
+            status: Status.initial,
           ),
         );
   final GoalsRepositories _goalsRepositories;
@@ -22,7 +24,7 @@ class GoalsCubit extends Cubit<GoalsState> {
     emit(
       const GoalsState(
         documents: [],
-        isLoading: true,
+        status: Status.loading,
         errorMessage: '',
       ),
     );
@@ -32,7 +34,7 @@ class GoalsCubit extends Cubit<GoalsState> {
         emit(
           GoalsState(
             documents: data,
-            isLoading: false,
+            status: Status.success,
             errorMessage: '',
           ),
         );
@@ -41,7 +43,7 @@ class GoalsCubit extends Cubit<GoalsState> {
         (error) {
           GoalsState(
             documents: const [],
-            isLoading: false,
+            status: Status.error,
             errorMessage: error.toString(),
           );
         },
@@ -56,7 +58,7 @@ class GoalsCubit extends Cubit<GoalsState> {
   }
 
   Future<void> add({
-    required name,
+    required String name,
   }) async {
     _goalsRepositories.add(name: name);
   }

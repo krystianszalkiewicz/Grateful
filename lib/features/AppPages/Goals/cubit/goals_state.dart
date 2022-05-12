@@ -3,12 +3,12 @@ part of 'goals_cubit.dart';
 @immutable
 class GoalsState {
   final List<ItemModel> documents;
-  final bool isLoading;
-  final String errorMessage;
+  final String? errorMessage;
+  final Status status;
 
   const GoalsState({
-    required this.documents,
-    required this.isLoading,
     required this.errorMessage,
+    required this.documents,
+    this.status = Status.initial,
   });
 }

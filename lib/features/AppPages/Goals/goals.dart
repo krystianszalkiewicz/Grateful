@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:thankfulness/App/core/enums.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
 import '../../../models/Widgets/name/name_widget.dart';
@@ -87,11 +88,16 @@ class GoalsGratefulPage extends StatelessWidget {
           GoalsRepositories(),
         )..start(),
         child: BlocBuilder<GoalsCubit, GoalsState>(builder: (context, state) {
-          if (state.errorMessage.isNotEmpty) {
-            return Text('Something went wrong: ${state.errorMessage}');
+          if (state.status == Status.error) {
+            final errorMessage =
+                state.errorMessage ?? 'Wystąpił nieoczekiwany błąd';
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(errorMessage),
+              backgroundColor: Colors.amber,
+            ));
           }
 
-          if (state.isLoading) {
+          if (state.status ==Status.loading) {
             return const Center(child: CircularProgressIndicator());
           }
           final itemModels = state.documents;

@@ -33,6 +33,7 @@ class UserProfile extends StatelessWidget {
         }),
       ],
       avatarSize: 200,
+      
     );
   }
 }

@@ -13,7 +13,8 @@ class GratefulCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GratefulCounterCubit(GratefulRepositories())..start(),
+      create: (context) =>
+          GratefulCounterCubit(GratefulRepositories())..start(),
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.yellow,
