@@ -1,9 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 
 class GratefulRepositories {
   Stream<List<ItemModel>> getItemsStream() {
-    return FirebaseFirestore.instance.collection('grateful').snapshots().map(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('Jesteś nie zalogowany');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('grateful')
+        .snapshots()
+        .map(
       (querySnapshot) {
         return querySnapshot.docs.map((doc) {
           return ItemModel(
@@ -16,17 +26,40 @@ class GratefulRepositories {
   }
 
   Future<void> delete({required String id}) {
-    return FirebaseFirestore.instance.collection('grateful').doc(id).delete();
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('Jesteś nie zalogowany');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('grateful')
+        .doc(id)
+        .delete();
   }
 
   Future<void> add({required String name}) {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('Jesteś nie zalogowany');
+    }
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('grateful')
         .add({'name': name});
   }
 
   Future<int?> getCount() async {
-    FirebaseFirestore.instance.collection('grateful').snapshots();
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('Jesteś nie zalogowany');
+    }
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('grateful')
+        .snapshots();
     return null;
   }
 }
