@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 import 'package:thankfulness/App/core/enums.dart';
-import 'package:thankfulness/models/Widgets/goals/cubit/golas_cpunter_cubit.dart';
+import 'package:thankfulness/models/Widgets/goals/cubit/golas_counter_cubit.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
 class GoalsCounter extends StatelessWidget {

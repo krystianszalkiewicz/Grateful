@@ -34,7 +34,7 @@ class GoalsCounterCubit extends Cubit<GoalsCounterState> {
         emit(
           GoalsCounterState(
             errorMessage: '',
-            status: Status.loading,
+            status: Status.success,
             count: data,
           ),
         );

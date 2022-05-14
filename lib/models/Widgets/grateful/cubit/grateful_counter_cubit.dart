@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:thankfulness/App/core/enums.dart';
 import 'package:thankfulness/repositories/grateful_repositories.dart';
 import '../../item/item_model.dart';
 part 'grateful_counter_state.dart';
@@ -10,7 +11,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
       : super(
           const GratefulCounterState(
             errorMessage: '',
-            isLoadiing: false,
+            status: Status.initial,
             count: [],
           ),
         );
@@ -21,7 +22,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
   Future<void> start() async {
     const GratefulCounterState(
       errorMessage: '',
-      isLoadiing: true,
+      status: Status.loading,
       count: [],
     );
 
@@ -30,7 +31,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
         emit(
           GratefulCounterState(
             errorMessage: '',
-            isLoadiing: false,
+            status: Status.success,
             count: data,
           ),
         );
@@ -39,7 +40,7 @@ class GratefulCounterCubit extends Cubit<GratefulCounterState> {
         (error) {
           GratefulCounterState(
             errorMessage: error.toString(),
-            isLoadiing: false,
+            status: Status.error,
             count: const [],
           );
         },
