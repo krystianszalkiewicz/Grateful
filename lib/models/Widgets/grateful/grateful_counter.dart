@@ -42,7 +42,6 @@ class GratefulCounter extends StatelessWidget {
                 'https://rive.app/community/944-1847-lodinganimate/',
               );
             }
-
             return Text(
               state.count.length.toString(),
               style: GoogleFonts.pacifico(

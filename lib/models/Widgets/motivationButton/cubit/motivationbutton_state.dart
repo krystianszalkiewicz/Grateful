@@ -4,10 +4,10 @@ part of 'motivationbutton_cubit.dart';
 class MotivationbuttonState {
   const MotivationbuttonState({
     required this.errorMessage,
-    required this.isLoading,
     required this.documents,
+    this.status = Status.initial,
   });
   final List<ItemModel> documents;
-  final String errorMessage;
-  final bool isLoading;
+  final String? errorMessage;
+  final Status status;
 }

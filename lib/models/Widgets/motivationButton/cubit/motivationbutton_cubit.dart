@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:thankfulness/App/core/enums.dart';
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 import '../../../../repositories/motivation_repositories.dart';
 part 'motivationbutton_state.dart';
@@ -11,7 +12,7 @@ class MotivationbuttonCubit extends Cubit<MotivationbuttonState> {
           const MotivationbuttonState(
             documents: [],
             errorMessage: '',
-            isLoading: false,
+            status: Status.initial,
           ),
         );
   StreamSubscription? _streamSubscription;
@@ -20,7 +21,7 @@ class MotivationbuttonCubit extends Cubit<MotivationbuttonState> {
   Future<void> start() async {
     const MotivationbuttonState(
       errorMessage: '',
-      isLoading: true,
+      status: Status.loading,
       documents: [],
     );
 
@@ -29,7 +30,7 @@ class MotivationbuttonCubit extends Cubit<MotivationbuttonState> {
         emit(
           MotivationbuttonState(
             errorMessage: '',
-            isLoading: false,
+            status: Status.success,
             documents: data,
           ),
         );
@@ -38,7 +39,7 @@ class MotivationbuttonCubit extends Cubit<MotivationbuttonState> {
         (error) {
           MotivationbuttonState(
             errorMessage: error.toString(),
-            isLoading: false,
+            status: Status.error,
             documents: const [],
           );
         },
