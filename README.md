@@ -1,4 +1,4 @@
-# thankfulness
+# Grateful
 
 A new Flutter project.
 
