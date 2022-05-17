@@ -60,7 +60,7 @@ class _MotivationButtonState extends State<MotivationButton> {
               }
               return Text(
                 motivation
-                    ? 'Motywacyjny cytat od Misia'
+                    ? 'Motywacyjny cytat od Miśka'
                     : state.documents.toString(),
                 style: colorStyle
                     ? GoogleFonts.pacifico(
