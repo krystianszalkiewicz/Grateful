@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/App/core/enums.dart';
+import 'package:thankfulness/data/remote_data_sources/goals_remote_data_sources.dart';
 import 'package:thankfulness/repositories/goals_repositories.dart';
 
 import '../../../models/Widgets/name/name_widget.dart';
@@ -64,7 +65,7 @@ class GoalsGratefulPage extends StatelessWidget {
       ),
       floatingActionButton: BlocProvider(
         create: (context) => GoalsCubit(
-          GoalsRepositories(),
+          GoalsRepositories(GoalsRemoteDataSource()),
         ),
         child: BlocBuilder<GoalsCubit, GoalsState>(
           builder: (context, state) {
@@ -85,7 +86,7 @@ class GoalsGratefulPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => GoalsCubit(
-          GoalsRepositories(),
+          GoalsRepositories(GoalsRemoteDataSource()),
         )..start(),
         child: BlocBuilder<GoalsCubit, GoalsState>(builder: (context, state) {
           if (state.status == Status.error) {

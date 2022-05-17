@@ -4,15 +4,19 @@ import 'package:thankfulness/data/remote_data_sources/goals_remote_data_sources.
 import 'package:thankfulness/models/Widgets/item/item_model.dart';
 
 class GoalsRepositories {
-  GoalsRepositories(this._goalsRemoteDataSource);
   final GoalsRemoteDataSource _goalsRemoteDataSource;
+  GoalsRepositories(this._goalsRemoteDataSource);
 
   Stream<List<ItemModel>> getItemsStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
       Exception('Jesteś nie zalogowany');
     }
-    return _goalsRemoteDataSource
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('goals')
+        .snapshots()
         .map(
       (querySnapshot) {
         return querySnapshot.docs.map((doc) {
@@ -30,12 +34,7 @@ class GoalsRepositories {
     if (userID == null) {
       Exception('Jesteś nie zalogowany');
     }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('goals')
-        .doc(id)
-        .delete();
+    return _goalsRemoteDataSource.delete(id: '');
   }
 
   Future<void> add({required String name}) {
@@ -43,11 +42,7 @@ class GoalsRepositories {
     if (userID == null) {
       Exception('Jesteś nie zalogowany');
     }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('goals')
-        .add({'name': name});
+    return _goalsRemoteDataSource.add(name: '');
   }
 
   Future<int?> getCount() async {
