@@ -1,7 +1,6 @@
 # Grateful
 
-A new Flutter project.
-
+The idea is very simple. You just need to write down at least 5 things that you are grateful for every day. Exercise your mind! Even when you are mired in depression or other negative states of mind, you can consciously redirect your awareness to the positive aspects. Additionally, Grateful will help you achieve your goals and dreams.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
