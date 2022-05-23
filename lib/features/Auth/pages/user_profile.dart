@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserProfile extends StatelessWidget {
   const UserProfile({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class UserProfile extends StatelessWidget {
         ),
         title: Center(
           child: Text(
-            'Twój profil',
+            AppLocalizations.of(context)!.yourProfile,
             style: GoogleFonts.pacifico(
               color: const Color.fromARGB(255, 23, 213, 169),
               fontSize: 35,
@@ -33,7 +34,6 @@ class UserProfile extends StatelessWidget {
         }),
       ],
       avatarSize: 200,
-      
     );
   }
 }

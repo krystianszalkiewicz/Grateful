@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:thankfulness/features/AppPages/Grateful/cubit/grateful_cubit.dart';
 
 import 'package:thankfulness/repositories/grateful_repositories.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../App/core/enums.dart';
 
 class Grateful extends StatelessWidget {
@@ -27,7 +27,7 @@ class Grateful extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Center(
           child: Text(
-            'Moje wdzięczności',
+            (AppLocalizations.of(context)!.myGratitude),
             style: GoogleFonts.pacifico(
               color: Colors.white,
               fontSize: 30,
@@ -55,7 +55,7 @@ class GratefulPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Moje powody do wdzięczności',
+          (AppLocalizations.of(context)!.yourNumberOfReasonsToBeGrateful),
           style: GoogleFonts.pacifico(
             color: Colors.lightBlue,
             fontSize: 20,
@@ -115,7 +115,8 @@ class GratefulPage extends StatelessWidget {
                                 id: itemModel.id,
                               );
                         },
-                        child: NameWidget(
+                        child: NameWidgetAchive(
+                          //nie wiem czy NameWidgetAchive czy NameWitgetGrateful
                           itemModel.name,
                         ),
                       );
@@ -134,8 +135,8 @@ class GratefulPage extends StatelessWidget {
   }
 }
 
-class NameWidget extends StatelessWidget {
-  const NameWidget(
+class NameWidgetAchive extends StatelessWidget {
+  const NameWidgetAchive(
     this.name, {
     Key? key,
   }) : super(key: key);
@@ -153,7 +154,36 @@ class NameWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       child: Text(
-        (name),
+        (AppLocalizations.of(context)!.yourNumberOfGoalsToAchieve),
+        style: GoogleFonts.pacifico(
+          color: Colors.white,
+          fontSize: 23,
+        ),
+      ),
+    );
+  }
+}
+
+class NameWidgetGrateful extends StatelessWidget {
+  const NameWidgetGrateful(
+    this.name, {
+    Key? key,
+  }) : super(key: key);
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 23, 213, 169),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
+      child: Text(
+        (AppLocalizations.of(context)!.yourNumberOfReasonsToBeGrateful),
         style: GoogleFonts.pacifico(
           color: Colors.white,
           fontSize: 23,
