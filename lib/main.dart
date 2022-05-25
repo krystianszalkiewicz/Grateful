@@ -4,7 +4,6 @@ import 'package:thankfulness/firebase_options.dart';
 import 'App/app.dart';
 import 'firebase_options.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -12,4 +11,3 @@ void main() async {
   );
   runApp(const MyApp());
 }
-

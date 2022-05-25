@@ -43,10 +43,13 @@ dependencies:
   flutterfire_ui: ^0.4.0+4
   firebase_auth: ^3.3.16
   rive: ^0.8.4
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -55,6 +58,12 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
   bloc_test: ^9.0.3
+  flutter_launcher_icons: ^0.9.2
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -66,6 +75,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
